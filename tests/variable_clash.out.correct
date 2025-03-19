@@ -1,0 +1,26 @@
+Finding declarations...
+Resolving types...
+Resolving function calls...
+Checking field and variable names...
+tests/variable_clash.uc:1:21: error (4): redeclaration of x, previously declared at line 1:14
+void foo(int x, int x) {}
+                    ^
+tests/variable_clash.uc:4:7: error (4): redeclaration of x, previously declared at line 3:14
+  int x = 0;
+      ^
+tests/variable_clash.uc:9:7: error (4): redeclaration of x, previously declared at line 8:7
+  int x = 1;
+      ^
+tests/variable_clash.uc:17:11: error (4): redeclaration of x, previously declared at line 13:7
+      int x = 2;
+          ^
+tests/variable_clash.uc:18:11: error (4): redeclaration of y, previously declared at line 15:9
+      int y = 3;
+          ^
+tests/variable_clash.uc:31:3: error (4): undefined variable or field i
+  i = 3;
+  ^
+tests/variable_clash.uc:36:3: error (4): undefined variable or field j
+  j = 6;
+  ^
+7 errors generated in phase 4.

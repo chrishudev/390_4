@@ -1,0 +1,10 @@
+Finding declarations...
+Resolving types...
+Resolving function calls...
+tests/unknown_function.uc:2:3: error (3): undefined function bar
+  bar(baz());
+  ^~^
+tests/unknown_function.uc:2:7: error (3): undefined function baz
+  bar(baz());
+      ^~^
+2 errors generated in phase 3.

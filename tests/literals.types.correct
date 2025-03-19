@@ -1,0 +1,116 @@
+ProgramNode {
+  FunctionDeclNode {
+    TypeNameNode: void {
+      NameNode {
+        void
+      }
+    }
+    NameNode {
+      main
+    }
+    ParameterNode {
+      ArrayTypeNameNode: string[] {
+        TypeNameNode: string {
+          NameNode {
+            string
+          }
+        }
+      }
+      NameNode {
+        args
+      }
+    }
+    BlockNode {
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          PlusNode: string {
+            StringNode: string {
+              ""
+            }
+            BooleanNode: boolean {
+              false
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          PlusNode: string {
+            StringNode: string {
+              ""
+            }
+            BooleanNode: boolean {
+              true
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          PlusNode: string {
+            StringNode: string {
+              ""
+            }
+            StringNode: string {
+              "hello"
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          PlusNode: string {
+            StringNode: string {
+              ""
+            }
+            IntegerNode: int {
+              3
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          PlusNode: string {
+            StringNode: string {
+              ""
+            }
+            IntegerNode: long {
+              31415926535L
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          PlusNode: string {
+            StringNode: string {
+              ""
+            }
+            DoubleNode: double {
+              3.0
+            }
+          }
+        }
+      }
+    }
+  }
+}

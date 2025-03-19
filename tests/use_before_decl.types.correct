@@ -1,0 +1,148 @@
+ProgramNode {
+  FunctionDeclNode {
+    TypeNameNode: void {
+      NameNode {
+        void
+      }
+    }
+    NameNode {
+      main
+    }
+    ParameterNode {
+      ArrayTypeNameNode: string[] {
+        TypeNameNode: string {
+          NameNode {
+            string
+          }
+        }
+      }
+      NameNode {
+        args
+      }
+    }
+    BlockNode {
+      VarDefStatementNode {
+        VarDefNode {
+          TypeNameNode: foo {
+            NameNode {
+              foo
+            }
+          }
+          NameNode {
+            f
+          }
+          NewNode: foo {
+            TypeNameNode: foo {
+              NameNode {
+                foo
+              }
+            }
+            NewNode: baz {
+              TypeNameNode: baz {
+                NameNode {
+                  baz
+                }
+              }
+              ArrayIndexNode: string {
+                NameExpressionNode: string[] {
+                  NameNode {
+                    args
+                  }
+                }
+                IntegerNode: int {
+                  0
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            bar
+          }
+          NameExpressionNode: foo {
+            NameNode {
+              f
+            }
+          }
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    TypeNameNode: void {
+      NameNode {
+        void
+      }
+    }
+    NameNode {
+      bar
+    }
+    ParameterNode {
+      TypeNameNode: foo {
+        NameNode {
+          foo
+        }
+      }
+      NameNode {
+        f
+      }
+    }
+    BlockNode {
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          FieldAccessNode: string {
+            FieldAccessNode: baz {
+              NameExpressionNode: foo {
+                NameNode {
+                  f
+                }
+              }
+              NameNode {
+                b
+              }
+            }
+            NameNode {
+              s
+            }
+          }
+        }
+      }
+    }
+  }
+  StructDeclNode: foo {
+    NameNode {
+      foo
+    }
+    FieldDeclNode {
+      TypeNameNode: baz {
+        NameNode {
+          baz
+        }
+      }
+      NameNode {
+        b
+      }
+    }
+  }
+  StructDeclNode: baz {
+    NameNode {
+      baz
+    }
+    FieldDeclNode {
+      TypeNameNode: string {
+        NameNode {
+          string
+        }
+      }
+      NameNode {
+        s
+      }
+    }
+  }
+}

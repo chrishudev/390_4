@@ -1,0 +1,25 @@
+Finding declarations...
+Resolving types...
+Resolving function calls...
+Checking field and variable names...
+Checking basic control flow...
+Type checking...
+tests/bad_args.uc:2:8: error (6): type int of argument 1 is not compatible with parameter of type string[]
+  main(3);
+       ^
+tests/bad_args.uc:3:3: error (6): function main expected 1 argument, got 2
+  main(args, args);
+  ^~~~~~~~~~~~~~~^
+tests/bad_args.uc:4:11: error (6): type int of argument 1 is not compatible with field of type boolean
+  new foo(3);
+          ^
+tests/bad_args.uc:5:11: error (6): type null of argument 1 is not compatible with field of type boolean
+  new foo(null);
+          ^~~^
+tests/bad_args.uc:6:3: error (6): constructor for foo expected 0 or 1 argument, got 2
+  new foo(true, false);
+  ^~~~~~~~~~~~~~~~~~~^
+tests/bad_args.uc:7:15: error (6): type int of argument 1 is not assignable to array element of type foo
+  new foo[] { 3 };
+              ^
+6 errors generated in phase 6.

@@ -1,0 +1,698 @@
+ProgramNode {
+  FunctionDeclNode {
+    TypeNameNode: void {
+      NameNode {
+        void
+      }
+    }
+    NameNode {
+      main
+    }
+    ParameterNode {
+      ArrayTypeNameNode: string[] {
+        TypeNameNode: string {
+          NameNode {
+            string
+          }
+        }
+      }
+      NameNode {
+        args
+      }
+    }
+    BlockNode {
+      VarDefStatementNode {
+        VarDefNode {
+          TypeNameNode: int {
+            NameNode {
+              int
+            }
+          }
+          NameNode {
+            i
+          }
+          IntegerNode: int {
+            3
+          }
+        }
+      }
+      VarDefStatementNode {
+        VarDefNode {
+          TypeNameNode: double {
+            NameNode {
+              double
+            }
+          }
+          NameNode {
+            f
+          }
+          DoubleNode: double {
+            4.0
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            EqualNode: boolean {
+              NameExpressionNode: int {
+                NameNode {
+                  i
+                }
+              }
+              NameExpressionNode: int {
+                NameNode {
+                  i
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            NotEqualNode: boolean {
+              NameExpressionNode: double {
+                NameNode {
+                  f
+                }
+              }
+              NameExpressionNode: double {
+                NameNode {
+                  f
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            EqualNode: boolean {
+              NameExpressionNode: int {
+                NameNode {
+                  i
+                }
+              }
+              NameExpressionNode: double {
+                NameNode {
+                  f
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            NotEqualNode: boolean {
+              NameExpressionNode: int {
+                NameNode {
+                  i
+                }
+              }
+              NameExpressionNode: double {
+                NameNode {
+                  f
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            EqualNode: boolean {
+              NewNode: foo {
+                TypeNameNode: foo {
+                  NameNode {
+                    foo
+                  }
+                }
+                IntegerNode: int {
+                  3
+                }
+              }
+              NewNode: foo {
+                TypeNameNode: foo {
+                  NameNode {
+                    foo
+                  }
+                }
+                IntegerNode: int {
+                  3
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            NotEqualNode: boolean {
+              NewNode: foo {
+                TypeNameNode: foo {
+                  NameNode {
+                    foo
+                  }
+                }
+                IntegerNode: int {
+                  3
+                }
+              }
+              NewNode: foo {
+                TypeNameNode: foo {
+                  NameNode {
+                    foo
+                  }
+                }
+                IntegerNode: int {
+                  3
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            EqualNode: boolean {
+              NewNode: foo {
+                TypeNameNode: foo {
+                  NameNode {
+                    foo
+                  }
+                }
+                IntegerNode: int {
+                  3
+                }
+              }
+              NewNode: foo {
+                TypeNameNode: foo {
+                  NameNode {
+                    foo
+                  }
+                }
+                IntegerNode: int {
+                  4
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            NotEqualNode: boolean {
+              NewNode: foo {
+                TypeNameNode: foo {
+                  NameNode {
+                    foo
+                  }
+                }
+                IntegerNode: int {
+                  3
+                }
+              }
+              NewNode: foo {
+                TypeNameNode: foo {
+                  NameNode {
+                    foo
+                  }
+                }
+                IntegerNode: int {
+                  4
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            EqualNode: boolean {
+              NewNode: foo {
+                TypeNameNode: foo {
+                  NameNode {
+                    foo
+                  }
+                }
+                IntegerNode: int {
+                  3
+                }
+              }
+              NullNode: null {
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            NotEqualNode: boolean {
+              NewNode: foo {
+                TypeNameNode: foo {
+                  NameNode {
+                    foo
+                  }
+                }
+                IntegerNode: int {
+                  3
+                }
+              }
+              NullNode: null {
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            EqualNode: boolean {
+              NewNode: foo[] {
+                ArrayTypeNameNode: foo[] {
+                  TypeNameNode: foo {
+                    NameNode {
+                      foo
+                    }
+                  }
+                }
+                NewNode: foo {
+                  TypeNameNode: foo {
+                    NameNode {
+                      foo
+                    }
+                  }
+                  IntegerNode: int {
+                    3
+                  }
+                }
+              }
+              NewNode: foo[] {
+                ArrayTypeNameNode: foo[] {
+                  TypeNameNode: foo {
+                    NameNode {
+                      foo
+                    }
+                  }
+                }
+                NewNode: foo {
+                  TypeNameNode: foo {
+                    NameNode {
+                      foo
+                    }
+                  }
+                  IntegerNode: int {
+                    3
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            NotEqualNode: boolean {
+              NewNode: foo[] {
+                ArrayTypeNameNode: foo[] {
+                  TypeNameNode: foo {
+                    NameNode {
+                      foo
+                    }
+                  }
+                }
+                NewNode: foo {
+                  TypeNameNode: foo {
+                    NameNode {
+                      foo
+                    }
+                  }
+                  IntegerNode: int {
+                    3
+                  }
+                }
+              }
+              NewNode: foo[] {
+                ArrayTypeNameNode: foo[] {
+                  TypeNameNode: foo {
+                    NameNode {
+                      foo
+                    }
+                  }
+                }
+                NewNode: foo {
+                  TypeNameNode: foo {
+                    NameNode {
+                      foo
+                    }
+                  }
+                  IntegerNode: int {
+                    4
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            NotEqualNode: boolean {
+              NewNode: foo[] {
+                ArrayTypeNameNode: foo[] {
+                  TypeNameNode: foo {
+                    NameNode {
+                      foo
+                    }
+                  }
+                }
+                NewNode: foo {
+                  TypeNameNode: foo {
+                    NameNode {
+                      foo
+                    }
+                  }
+                  IntegerNode: int {
+                    3
+                  }
+                }
+              }
+              NewNode: foo[] {
+                ArrayTypeNameNode: foo[] {
+                  TypeNameNode: foo {
+                    NameNode {
+                      foo
+                    }
+                  }
+                }
+                NewNode: foo {
+                  TypeNameNode: foo {
+                    NameNode {
+                      foo
+                    }
+                  }
+                  IntegerNode: int {
+                    3
+                  }
+                }
+                NewNode: foo {
+                  TypeNameNode: foo {
+                    NameNode {
+                      foo
+                    }
+                  }
+                  IntegerNode: int {
+                    4
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            EqualNode: boolean {
+              NewNode: foo[] {
+                ArrayTypeNameNode: foo[] {
+                  TypeNameNode: foo {
+                    NameNode {
+                      foo
+                    }
+                  }
+                }
+                NewNode: foo {
+                  TypeNameNode: foo {
+                    NameNode {
+                      foo
+                    }
+                  }
+                  IntegerNode: int {
+                    3
+                  }
+                }
+              }
+              NullNode: null {
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            NotEqualNode: boolean {
+              NewNode: foo[] {
+                ArrayTypeNameNode: foo[] {
+                  TypeNameNode: foo {
+                    NameNode {
+                      foo
+                    }
+                  }
+                }
+                NewNode: foo {
+                  TypeNameNode: foo {
+                    NameNode {
+                      foo
+                    }
+                  }
+                  IntegerNode: int {
+                    3
+                  }
+                }
+              }
+              NullNode: null {
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            EqualNode: boolean {
+              NewNode: bar {
+                TypeNameNode: bar {
+                  NameNode {
+                    bar
+                  }
+                }
+              }
+              NewNode: bar {
+                TypeNameNode: bar {
+                  NameNode {
+                    bar
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            NotEqualNode: boolean {
+              NewNode: bar {
+                TypeNameNode: bar {
+                  NameNode {
+                    bar
+                  }
+                }
+              }
+              NewNode: bar {
+                TypeNameNode: bar {
+                  NameNode {
+                    bar
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            EqualNode: boolean {
+              NewNode: bar {
+                TypeNameNode: bar {
+                  NameNode {
+                    bar
+                  }
+                }
+              }
+              NullNode: null {
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            NotEqualNode: boolean {
+              NewNode: bar {
+                TypeNameNode: bar {
+                  NameNode {
+                    bar
+                  }
+                }
+              }
+              NullNode: null {
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  StructDeclNode: foo {
+    NameNode {
+      foo
+    }
+    FieldDeclNode {
+      TypeNameNode: int {
+        NameNode {
+          int
+        }
+      }
+      NameNode {
+        x
+      }
+    }
+  }
+  StructDeclNode: bar {
+    NameNode {
+      bar
+    }
+  }
+}

@@ -1,0 +1,2443 @@
+ProgramNode {
+  FunctionDeclNode {
+    TypeNameNode: int {
+      NameNode {
+        int
+      }
+    }
+    NameNode {
+      num_particles
+    }
+    BlockNode {
+      ReturnNode {
+        IntegerNode: int {
+          20
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    TypeNameNode: int {
+      NameNode {
+        int
+      }
+    }
+    NameNode {
+      num_steps
+    }
+    BlockNode {
+      ReturnNode {
+        IntegerNode: int {
+          10
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    TypeNameNode: double {
+      NameNode {
+        double
+      }
+    }
+    NameNode {
+      box_size
+    }
+    BlockNode {
+      ReturnNode {
+        DoubleNode: double {
+          0.1
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    ArrayTypeNameNode: double[] {
+      TypeNameNode: double {
+        NameNode {
+          double
+        }
+      }
+    }
+    NameNode {
+      initial_x_positions
+    }
+    BlockNode {
+      ReturnNode {
+        NewNode: double[] {
+          ArrayTypeNameNode: double[] {
+            TypeNameNode: double {
+              NameNode {
+                double
+              }
+            }
+          }
+          DoubleNode: double {
+            0.0167
+          }
+          DoubleNode: double {
+            0.033
+          }
+          DoubleNode: double {
+            0.05
+          }
+          DoubleNode: double {
+            0.0667
+          }
+          DoubleNode: double {
+            0.0833
+          }
+          DoubleNode: double {
+            0.0167
+          }
+          DoubleNode: double {
+            0.033
+          }
+          DoubleNode: double {
+            0.05
+          }
+          DoubleNode: double {
+            0.0667
+          }
+          DoubleNode: double {
+            0.0833
+          }
+          DoubleNode: double {
+            0.0167
+          }
+          DoubleNode: double {
+            0.033
+          }
+          DoubleNode: double {
+            0.05
+          }
+          DoubleNode: double {
+            0.0667
+          }
+          DoubleNode: double {
+            0.0833
+          }
+          DoubleNode: double {
+            0.0167
+          }
+          DoubleNode: double {
+            0.033
+          }
+          DoubleNode: double {
+            0.05
+          }
+          DoubleNode: double {
+            0.0667
+          }
+          DoubleNode: double {
+            0.0833
+          }
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    ArrayTypeNameNode: double[] {
+      TypeNameNode: double {
+        NameNode {
+          double
+        }
+      }
+    }
+    NameNode {
+      initial_y_positions
+    }
+    BlockNode {
+      ReturnNode {
+        NewNode: double[] {
+          ArrayTypeNameNode: double[] {
+            TypeNameNode: double {
+              NameNode {
+                double
+              }
+            }
+          }
+          DoubleNode: double {
+            0.02
+          }
+          DoubleNode: double {
+            0.02
+          }
+          DoubleNode: double {
+            0.02
+          }
+          DoubleNode: double {
+            0.02
+          }
+          DoubleNode: double {
+            0.02
+          }
+          DoubleNode: double {
+            0.04
+          }
+          DoubleNode: double {
+            0.04
+          }
+          DoubleNode: double {
+            0.04
+          }
+          DoubleNode: double {
+            0.04
+          }
+          DoubleNode: double {
+            0.04
+          }
+          DoubleNode: double {
+            0.06
+          }
+          DoubleNode: double {
+            0.06
+          }
+          DoubleNode: double {
+            0.06
+          }
+          DoubleNode: double {
+            0.06
+          }
+          DoubleNode: double {
+            0.06
+          }
+          DoubleNode: double {
+            0.08
+          }
+          DoubleNode: double {
+            0.08
+          }
+          DoubleNode: double {
+            0.08
+          }
+          DoubleNode: double {
+            0.08
+          }
+          DoubleNode: double {
+            0.08
+          }
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    ArrayTypeNameNode: double[] {
+      TypeNameNode: double {
+        NameNode {
+          double
+        }
+      }
+    }
+    NameNode {
+      initial_x_velocities
+    }
+    BlockNode {
+      ReturnNode {
+        NewNode: double[] {
+          ArrayTypeNameNode: double[] {
+            TypeNameNode: double {
+              NameNode {
+                double
+              }
+            }
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.482
+            }
+          }
+          DoubleNode: double {
+            0.430
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.338
+            }
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.556
+            }
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.332
+            }
+          }
+          DoubleNode: double {
+            0.880
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.730
+            }
+          }
+          DoubleNode: double {
+            0.458
+          }
+          DoubleNode: double {
+            0.576
+          }
+          DoubleNode: double {
+            0.792
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.810
+            }
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.836
+            }
+          }
+          DoubleNode: double {
+            0.572
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.038
+            }
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.960
+            }
+          }
+          DoubleNode: double {
+            0.872
+          }
+          DoubleNode: double {
+            0.704
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.35
+            }
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.374
+            }
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.348
+            }
+          }
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    ArrayTypeNameNode: double[] {
+      TypeNameNode: double {
+        NameNode {
+          double
+        }
+      }
+    }
+    NameNode {
+      initial_y_velocities
+    }
+    BlockNode {
+      ReturnNode {
+        NewNode: double[] {
+          ArrayTypeNameNode: double[] {
+            TypeNameNode: double {
+              NameNode {
+                double
+              }
+            }
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.330
+            }
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.622
+            }
+          }
+          DoubleNode: double {
+            0.088
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.058
+            }
+          }
+          DoubleNode: double {
+            0.328
+          }
+          DoubleNode: double {
+            0.292
+          }
+          DoubleNode: double {
+            0.792
+          }
+          DoubleNode: double {
+            0.648
+          }
+          DoubleNode: double {
+            0.812
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.460
+            }
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.382
+            }
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.624
+            }
+          }
+          DoubleNode: double {
+            0.262
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.662
+            }
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.212
+            }
+          }
+          DoubleNode: double {
+            0.914
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.898
+            }
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.026
+            }
+          }
+          PrefixMinusNode: double {
+            DoubleNode: double {
+              0.062
+            }
+          }
+          DoubleNode: double {
+            0.008
+          }
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    TypeNameNode: double {
+      NameNode {
+        double
+      }
+    }
+    NameNode {
+      density
+    }
+    BlockNode {
+      ReturnNode {
+        DoubleNode: double {
+          0.0005
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    TypeNameNode: double {
+      NameNode {
+        double
+      }
+    }
+    NameNode {
+      mass
+    }
+    BlockNode {
+      ReturnNode {
+        DoubleNode: double {
+          0.01
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    TypeNameNode: double {
+      NameNode {
+        double
+      }
+    }
+    NameNode {
+      cutoff_radius
+    }
+    BlockNode {
+      ReturnNode {
+        DoubleNode: double {
+          0.01
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    TypeNameNode: double {
+      NameNode {
+        double
+      }
+    }
+    NameNode {
+      min_radius_squared
+    }
+    BlockNode {
+      ReturnNode {
+        CallNode: double {
+          NameNode {
+            pow
+          }
+          DivideNode: double {
+            CallNode: double {
+              NameNode {
+                cutoff_radius
+              }
+            }
+            IntegerNode: int {
+              100
+            }
+          }
+          IntegerNode: int {
+            2
+          }
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    TypeNameNode: double {
+      NameNode {
+        double
+      }
+    }
+    NameNode {
+      time_interval
+    }
+    BlockNode {
+      ReturnNode {
+        DoubleNode: double {
+          0.0005
+        }
+      }
+    }
+  }
+  StructDeclNode: particle {
+    NameNode {
+      particle
+    }
+    FieldDeclNode {
+      TypeNameNode: double {
+        NameNode {
+          double
+        }
+      }
+      NameNode {
+        x
+      }
+    }
+    FieldDeclNode {
+      TypeNameNode: double {
+        NameNode {
+          double
+        }
+      }
+      NameNode {
+        y
+      }
+    }
+    FieldDeclNode {
+      TypeNameNode: double {
+        NameNode {
+          double
+        }
+      }
+      NameNode {
+        x_vel
+      }
+    }
+    FieldDeclNode {
+      TypeNameNode: double {
+        NameNode {
+          double
+        }
+      }
+      NameNode {
+        y_vel
+      }
+    }
+    FieldDeclNode {
+      TypeNameNode: double {
+        NameNode {
+          double
+        }
+      }
+      NameNode {
+        x_acc
+      }
+    }
+    FieldDeclNode {
+      TypeNameNode: double {
+        NameNode {
+          double
+        }
+      }
+      NameNode {
+        y_acc
+      }
+    }
+    FieldDeclNode {
+      TypeNameNode: int {
+        NameNode {
+          int
+        }
+      }
+      NameNode {
+        id
+      }
+    }
+  }
+  FunctionDeclNode {
+    TypeNameNode: double {
+      NameNode {
+        double
+      }
+    }
+    NameNode {
+      max
+    }
+    ParameterNode {
+      TypeNameNode: double {
+        NameNode {
+          double
+        }
+      }
+      NameNode {
+        a
+      }
+    }
+    ParameterNode {
+      TypeNameNode: double {
+        NameNode {
+          double
+        }
+      }
+      NameNode {
+        b
+      }
+    }
+    BlockNode {
+      IfNode {
+        GreaterNode: boolean {
+          NameExpressionNode: double {
+            NameNode {
+              a
+            }
+          }
+          NameExpressionNode: double {
+            NameNode {
+              b
+            }
+          }
+        }
+        BlockNode {
+          ReturnNode {
+            NameExpressionNode: double {
+              NameNode {
+                a
+              }
+            }
+          }
+        }
+        BlockNode {
+        }
+      }
+      ReturnNode {
+        NameExpressionNode: double {
+          NameNode {
+            b
+          }
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    TypeNameNode: void {
+      NameNode {
+        void
+      }
+    }
+    NameNode {
+      apply_force
+    }
+    ParameterNode {
+      TypeNameNode: particle {
+        NameNode {
+          particle
+        }
+      }
+      NameNode {
+        p
+      }
+    }
+    ParameterNode {
+      TypeNameNode: particle {
+        NameNode {
+          particle
+        }
+      }
+      NameNode {
+        other
+      }
+    }
+    BlockNode {
+      VarDefStatementNode {
+        VarDefNode {
+          TypeNameNode: double {
+            NameNode {
+              double
+            }
+          }
+          NameNode {
+            dx
+          }
+          MinusNode: double {
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  other
+                }
+              }
+              NameNode {
+                x
+              }
+            }
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  p
+                }
+              }
+              NameNode {
+                x
+              }
+            }
+          }
+        }
+      }
+      VarDefStatementNode {
+        VarDefNode {
+          TypeNameNode: double {
+            NameNode {
+              double
+            }
+          }
+          NameNode {
+            dy
+          }
+          MinusNode: double {
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  other
+                }
+              }
+              NameNode {
+                y
+              }
+            }
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  p
+                }
+              }
+              NameNode {
+                y
+              }
+            }
+          }
+        }
+      }
+      IfNode {
+        LogicalAndNode: boolean {
+          EqualNode: boolean {
+            NameExpressionNode: double {
+              NameNode {
+                dx
+              }
+            }
+            IntegerNode: int {
+              0
+            }
+          }
+          EqualNode: boolean {
+            NameExpressionNode: double {
+              NameNode {
+                dy
+              }
+            }
+            IntegerNode: int {
+              0
+            }
+          }
+        }
+        BlockNode {
+          ReturnNode {
+            None
+          }
+        }
+        BlockNode {
+        }
+      }
+      VarDefStatementNode {
+        VarDefNode {
+          TypeNameNode: double {
+            NameNode {
+              double
+            }
+          }
+          NameNode {
+            radius2
+          }
+          CallNode: double {
+            NameNode {
+              max
+            }
+            PlusNode: double {
+              TimesNode: double {
+                NameExpressionNode: double {
+                  NameNode {
+                    dx
+                  }
+                }
+                NameExpressionNode: double {
+                  NameNode {
+                    dx
+                  }
+                }
+              }
+              TimesNode: double {
+                NameExpressionNode: double {
+                  NameNode {
+                    dy
+                  }
+                }
+                NameExpressionNode: double {
+                  NameNode {
+                    dy
+                  }
+                }
+              }
+            }
+            CallNode: double {
+              NameNode {
+                min_radius_squared
+              }
+            }
+          }
+        }
+      }
+      IfNode {
+        GreaterNode: boolean {
+          NameExpressionNode: double {
+            NameNode {
+              radius2
+            }
+          }
+          TimesNode: double {
+            CallNode: double {
+              NameNode {
+                cutoff_radius
+              }
+            }
+            CallNode: double {
+              NameNode {
+                cutoff_radius
+              }
+            }
+          }
+        }
+        BlockNode {
+          ReturnNode {
+            None
+          }
+        }
+        BlockNode {
+        }
+      }
+      VarDefStatementNode {
+        VarDefNode {
+          TypeNameNode: double {
+            NameNode {
+              double
+            }
+          }
+          NameNode {
+            radius
+          }
+          CallNode: double {
+            NameNode {
+              sqrt
+            }
+            NameExpressionNode: double {
+              NameNode {
+                radius2
+              }
+            }
+          }
+        }
+      }
+      VarDefStatementNode {
+        VarDefNode {
+          TypeNameNode: double {
+            NameNode {
+              double
+            }
+          }
+          NameNode {
+            coefficient
+          }
+          DivideNode: double {
+            DivideNode: double {
+              MinusNode: double {
+                IntegerNode: int {
+                  1
+                }
+                DivideNode: double {
+                  CallNode: double {
+                    NameNode {
+                      cutoff_radius
+                    }
+                  }
+                  NameExpressionNode: double {
+                    NameNode {
+                      radius
+                    }
+                  }
+                }
+              }
+              NameExpressionNode: double {
+                NameNode {
+                  radius2
+                }
+              }
+            }
+            CallNode: double {
+              NameNode {
+                mass
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        AssignNode: double {
+          FieldAccessNode: double {
+            NameExpressionNode: particle {
+              NameNode {
+                p
+              }
+            }
+            NameNode {
+              x_acc
+            }
+          }
+          PlusNode: double {
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  p
+                }
+              }
+              NameNode {
+                x_acc
+              }
+            }
+            TimesNode: double {
+              NameExpressionNode: double {
+                NameNode {
+                  coefficient
+                }
+              }
+              NameExpressionNode: double {
+                NameNode {
+                  dx
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        AssignNode: double {
+          FieldAccessNode: double {
+            NameExpressionNode: particle {
+              NameNode {
+                p
+              }
+            }
+            NameNode {
+              y_acc
+            }
+          }
+          PlusNode: double {
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  p
+                }
+              }
+              NameNode {
+                y_acc
+              }
+            }
+            TimesNode: double {
+              NameExpressionNode: double {
+                NameNode {
+                  coefficient
+                }
+              }
+              NameExpressionNode: double {
+                NameNode {
+                  dy
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    TypeNameNode: void {
+      NameNode {
+        void
+      }
+    }
+    NameNode {
+      move_particle
+    }
+    ParameterNode {
+      TypeNameNode: particle {
+        NameNode {
+          particle
+        }
+      }
+      NameNode {
+        p
+      }
+    }
+    BlockNode {
+      AssertNode {
+        LogicalAndNode: boolean {
+          GreaterEqualNode: boolean {
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  p
+                }
+              }
+              NameNode {
+                x
+              }
+            }
+            IntegerNode: int {
+              0
+            }
+          }
+          LessEqualNode: boolean {
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  p
+                }
+              }
+              NameNode {
+                x
+              }
+            }
+            CallNode: double {
+              NameNode {
+                box_size
+              }
+            }
+          }
+        }
+        "p.x >= 0 && p.x <= box_size()"
+        PlusNode: string {
+          StringNode: string {
+            "invalid x position: "
+          }
+          FieldAccessNode: double {
+            NameExpressionNode: particle {
+              NameNode {
+                p
+              }
+            }
+            NameNode {
+              x
+            }
+          }
+        }
+      }
+      AssertNode {
+        LogicalAndNode: boolean {
+          GreaterEqualNode: boolean {
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  p
+                }
+              }
+              NameNode {
+                y
+              }
+            }
+            IntegerNode: int {
+              0
+            }
+          }
+          LessEqualNode: boolean {
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  p
+                }
+              }
+              NameNode {
+                y
+              }
+            }
+            CallNode: double {
+              NameNode {
+                box_size
+              }
+            }
+          }
+        }
+        "p.y >= 0 && p.y <= box_size()"
+        PlusNode: string {
+          StringNode: string {
+            "invalid y position: "
+          }
+          FieldAccessNode: double {
+            NameExpressionNode: particle {
+              NameNode {
+                p
+              }
+            }
+            NameNode {
+              y
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        AssignNode: double {
+          FieldAccessNode: double {
+            NameExpressionNode: particle {
+              NameNode {
+                p
+              }
+            }
+            NameNode {
+              x_vel
+            }
+          }
+          PlusNode: double {
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  p
+                }
+              }
+              NameNode {
+                x_vel
+              }
+            }
+            TimesNode: double {
+              FieldAccessNode: double {
+                NameExpressionNode: particle {
+                  NameNode {
+                    p
+                  }
+                }
+                NameNode {
+                  x_acc
+                }
+              }
+              CallNode: double {
+                NameNode {
+                  time_interval
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        AssignNode: double {
+          FieldAccessNode: double {
+            NameExpressionNode: particle {
+              NameNode {
+                p
+              }
+            }
+            NameNode {
+              y_vel
+            }
+          }
+          PlusNode: double {
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  p
+                }
+              }
+              NameNode {
+                y_vel
+              }
+            }
+            TimesNode: double {
+              FieldAccessNode: double {
+                NameExpressionNode: particle {
+                  NameNode {
+                    p
+                  }
+                }
+                NameNode {
+                  y_acc
+                }
+              }
+              CallNode: double {
+                NameNode {
+                  time_interval
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        AssignNode: double {
+          FieldAccessNode: double {
+            NameExpressionNode: particle {
+              NameNode {
+                p
+              }
+            }
+            NameNode {
+              x
+            }
+          }
+          PlusNode: double {
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  p
+                }
+              }
+              NameNode {
+                x
+              }
+            }
+            TimesNode: double {
+              FieldAccessNode: double {
+                NameExpressionNode: particle {
+                  NameNode {
+                    p
+                  }
+                }
+                NameNode {
+                  x_vel
+                }
+              }
+              CallNode: double {
+                NameNode {
+                  time_interval
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        AssignNode: double {
+          FieldAccessNode: double {
+            NameExpressionNode: particle {
+              NameNode {
+                p
+              }
+            }
+            NameNode {
+              y
+            }
+          }
+          PlusNode: double {
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  p
+                }
+              }
+              NameNode {
+                y
+              }
+            }
+            TimesNode: double {
+              FieldAccessNode: double {
+                NameExpressionNode: particle {
+                  NameNode {
+                    p
+                  }
+                }
+                NameNode {
+                  y_vel
+                }
+              }
+              CallNode: double {
+                NameNode {
+                  time_interval
+                }
+              }
+            }
+          }
+        }
+      }
+      WhileNode {
+        LogicalOrNode: boolean {
+          LessNode: boolean {
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  p
+                }
+              }
+              NameNode {
+                x
+              }
+            }
+            IntegerNode: int {
+              0
+            }
+          }
+          GreaterNode: boolean {
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  p
+                }
+              }
+              NameNode {
+                x
+              }
+            }
+            CallNode: double {
+              NameNode {
+                box_size
+              }
+            }
+          }
+        }
+        BlockNode {
+          IfNode {
+            LessNode: boolean {
+              FieldAccessNode: double {
+                NameExpressionNode: particle {
+                  NameNode {
+                    p
+                  }
+                }
+                NameNode {
+                  x
+                }
+              }
+              IntegerNode: int {
+                0
+              }
+            }
+            BlockNode {
+              ExpressionStatementNode {
+                AssignNode: double {
+                  FieldAccessNode: double {
+                    NameExpressionNode: particle {
+                      NameNode {
+                        p
+                      }
+                    }
+                    NameNode {
+                      x
+                    }
+                  }
+                  PrefixMinusNode: double {
+                    FieldAccessNode: double {
+                      NameExpressionNode: particle {
+                        NameNode {
+                          p
+                        }
+                      }
+                      NameNode {
+                        x
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            BlockNode {
+              ExpressionStatementNode {
+                AssignNode: double {
+                  FieldAccessNode: double {
+                    NameExpressionNode: particle {
+                      NameNode {
+                        p
+                      }
+                    }
+                    NameNode {
+                      x
+                    }
+                  }
+                  MinusNode: double {
+                    TimesNode: double {
+                      IntegerNode: int {
+                        2
+                      }
+                      CallNode: double {
+                        NameNode {
+                          box_size
+                        }
+                      }
+                    }
+                    FieldAccessNode: double {
+                      NameExpressionNode: particle {
+                        NameNode {
+                          p
+                        }
+                      }
+                      NameNode {
+                        x
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          ExpressionStatementNode {
+            AssignNode: double {
+              FieldAccessNode: double {
+                NameExpressionNode: particle {
+                  NameNode {
+                    p
+                  }
+                }
+                NameNode {
+                  x_vel
+                }
+              }
+              PrefixMinusNode: double {
+                FieldAccessNode: double {
+                  NameExpressionNode: particle {
+                    NameNode {
+                      p
+                    }
+                  }
+                  NameNode {
+                    x_vel
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      WhileNode {
+        LogicalOrNode: boolean {
+          LessNode: boolean {
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  p
+                }
+              }
+              NameNode {
+                y
+              }
+            }
+            IntegerNode: int {
+              0
+            }
+          }
+          GreaterNode: boolean {
+            FieldAccessNode: double {
+              NameExpressionNode: particle {
+                NameNode {
+                  p
+                }
+              }
+              NameNode {
+                y
+              }
+            }
+            CallNode: double {
+              NameNode {
+                box_size
+              }
+            }
+          }
+        }
+        BlockNode {
+          IfNode {
+            LessNode: boolean {
+              FieldAccessNode: double {
+                NameExpressionNode: particle {
+                  NameNode {
+                    p
+                  }
+                }
+                NameNode {
+                  y
+                }
+              }
+              IntegerNode: int {
+                0
+              }
+            }
+            BlockNode {
+              ExpressionStatementNode {
+                AssignNode: double {
+                  FieldAccessNode: double {
+                    NameExpressionNode: particle {
+                      NameNode {
+                        p
+                      }
+                    }
+                    NameNode {
+                      y
+                    }
+                  }
+                  PrefixMinusNode: double {
+                    FieldAccessNode: double {
+                      NameExpressionNode: particle {
+                        NameNode {
+                          p
+                        }
+                      }
+                      NameNode {
+                        y
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            BlockNode {
+              ExpressionStatementNode {
+                AssignNode: double {
+                  FieldAccessNode: double {
+                    NameExpressionNode: particle {
+                      NameNode {
+                        p
+                      }
+                    }
+                    NameNode {
+                      y
+                    }
+                  }
+                  MinusNode: double {
+                    TimesNode: double {
+                      IntegerNode: int {
+                        2
+                      }
+                      CallNode: double {
+                        NameNode {
+                          box_size
+                        }
+                      }
+                    }
+                    FieldAccessNode: double {
+                      NameExpressionNode: particle {
+                        NameNode {
+                          p
+                        }
+                      }
+                      NameNode {
+                        y
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          ExpressionStatementNode {
+            AssignNode: double {
+              FieldAccessNode: double {
+                NameExpressionNode: particle {
+                  NameNode {
+                    p
+                  }
+                }
+                NameNode {
+                  y_vel
+                }
+              }
+              PrefixMinusNode: double {
+                FieldAccessNode: double {
+                  NameExpressionNode: particle {
+                    NameNode {
+                      p
+                    }
+                  }
+                  NameNode {
+                    y_vel
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    TypeNameNode: void {
+      NameNode {
+        void
+      }
+    }
+    NameNode {
+      print_particle_positions
+    }
+    ParameterNode {
+      ArrayTypeNameNode: particle[] {
+        TypeNameNode: particle {
+          NameNode {
+            particle
+          }
+        }
+      }
+      NameNode {
+        ps
+      }
+    }
+    BlockNode {
+      ForNode {
+        VarDefNode {
+          TypeNameNode: int {
+            NameNode {
+              int
+            }
+          }
+          NameNode {
+            i
+          }
+          IntegerNode: int {
+            0
+          }
+        }
+        LessNode: boolean {
+          NameExpressionNode: int {
+            NameNode {
+              i
+            }
+          }
+          FieldAccessNode: int {
+            NameExpressionNode: particle[] {
+              NameNode {
+                ps
+              }
+            }
+            NameNode {
+              length
+            }
+          }
+        }
+        PrefixIncrNode: int {
+          NameExpressionNode: int {
+            NameNode {
+              i
+            }
+          }
+        }
+        BlockNode {
+          ExpressionStatementNode {
+            CallNode: void {
+              NameNode {
+                println
+              }
+              PlusNode: string {
+                PlusNode: string {
+                  PlusNode: string {
+                    PlusNode: string {
+                      FieldAccessNode: int {
+                        ArrayIndexNode: particle {
+                          NameExpressionNode: particle[] {
+                            NameNode {
+                              ps
+                            }
+                          }
+                          NameExpressionNode: int {
+                            NameNode {
+                              i
+                            }
+                          }
+                        }
+                        NameNode {
+                          id
+                        }
+                      }
+                      StringNode: string {
+                        ": "
+                      }
+                    }
+                    FieldAccessNode: double {
+                      ArrayIndexNode: particle {
+                        NameExpressionNode: particle[] {
+                          NameNode {
+                            ps
+                          }
+                        }
+                        NameExpressionNode: int {
+                          NameNode {
+                            i
+                          }
+                        }
+                      }
+                      NameNode {
+                        x
+                      }
+                    }
+                  }
+                  StringNode: string {
+                    ", "
+                  }
+                }
+                FieldAccessNode: double {
+                  ArrayIndexNode: particle {
+                    NameExpressionNode: particle[] {
+                      NameNode {
+                        ps
+                      }
+                    }
+                    NameExpressionNode: int {
+                      NameNode {
+                        i
+                      }
+                    }
+                  }
+                  NameNode {
+                    y
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          StringNode: string {
+            ""
+          }
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    ArrayTypeNameNode: particle[] {
+      TypeNameNode: particle {
+        NameNode {
+          particle
+        }
+      }
+    }
+    NameNode {
+      make_particles
+    }
+    ParameterNode {
+      TypeNameNode: int {
+        NameNode {
+          int
+        }
+      }
+      NameNode {
+        num_particles
+      }
+    }
+    BlockNode {
+      AssertNode {
+        GreaterNode: boolean {
+          NameExpressionNode: int {
+            NameNode {
+              num_particles
+            }
+          }
+          IntegerNode: int {
+            0
+          }
+        }
+        "num_particles > 0"
+        None
+      }
+      VarDefStatementNode {
+        VarDefNode {
+          ArrayTypeNameNode: particle[] {
+            TypeNameNode: particle {
+              NameNode {
+                particle
+              }
+            }
+          }
+          NameNode {
+            particles
+          }
+          NewNode: particle[] {
+            ArrayTypeNameNode: particle[] {
+              TypeNameNode: particle {
+                NameNode {
+                  particle
+                }
+              }
+            }
+          }
+        }
+      }
+      VarDefStatementNode {
+        VarDefNode {
+          ArrayTypeNameNode: double[] {
+            TypeNameNode: double {
+              NameNode {
+                double
+              }
+            }
+          }
+          NameNode {
+            xs
+          }
+          CallNode: double[] {
+            NameNode {
+              initial_x_positions
+            }
+          }
+        }
+      }
+      VarDefStatementNode {
+        VarDefNode {
+          ArrayTypeNameNode: double[] {
+            TypeNameNode: double {
+              NameNode {
+                double
+              }
+            }
+          }
+          NameNode {
+            ys
+          }
+          CallNode: double[] {
+            NameNode {
+              initial_y_positions
+            }
+          }
+        }
+      }
+      VarDefStatementNode {
+        VarDefNode {
+          ArrayTypeNameNode: double[] {
+            TypeNameNode: double {
+              NameNode {
+                double
+              }
+            }
+          }
+          NameNode {
+            xvs
+          }
+          CallNode: double[] {
+            NameNode {
+              initial_x_velocities
+            }
+          }
+        }
+      }
+      VarDefStatementNode {
+        VarDefNode {
+          ArrayTypeNameNode: double[] {
+            TypeNameNode: double {
+              NameNode {
+                double
+              }
+            }
+          }
+          NameNode {
+            yvs
+          }
+          CallNode: double[] {
+            NameNode {
+              initial_y_velocities
+            }
+          }
+        }
+      }
+      ForNode {
+        VarDefNode {
+          TypeNameNode: int {
+            NameNode {
+              int
+            }
+          }
+          NameNode {
+            i
+          }
+          IntegerNode: int {
+            0
+          }
+        }
+        LessNode: boolean {
+          NameExpressionNode: int {
+            NameNode {
+              i
+            }
+          }
+          NameExpressionNode: int {
+            NameNode {
+              num_particles
+            }
+          }
+        }
+        PrefixIncrNode: int {
+          NameExpressionNode: int {
+            NameNode {
+              i
+            }
+          }
+        }
+        BlockNode {
+          ExpressionStatementNode {
+            PushNode: particle[] {
+              NameExpressionNode: particle[] {
+                NameNode {
+                  particles
+                }
+              }
+              NewNode: particle {
+                TypeNameNode: particle {
+                  NameNode {
+                    particle
+                  }
+                }
+                ArrayIndexNode: double {
+                  NameExpressionNode: double[] {
+                    NameNode {
+                      xs
+                    }
+                  }
+                  NameExpressionNode: int {
+                    NameNode {
+                      i
+                    }
+                  }
+                }
+                ArrayIndexNode: double {
+                  NameExpressionNode: double[] {
+                    NameNode {
+                      ys
+                    }
+                  }
+                  NameExpressionNode: int {
+                    NameNode {
+                      i
+                    }
+                  }
+                }
+                ArrayIndexNode: double {
+                  NameExpressionNode: double[] {
+                    NameNode {
+                      xvs
+                    }
+                  }
+                  NameExpressionNode: int {
+                    NameNode {
+                      i
+                    }
+                  }
+                }
+                ArrayIndexNode: double {
+                  NameExpressionNode: double[] {
+                    NameNode {
+                      yvs
+                    }
+                  }
+                  NameExpressionNode: int {
+                    NameNode {
+                      i
+                    }
+                  }
+                }
+                IntegerNode: int {
+                  0
+                }
+                IntegerNode: int {
+                  0
+                }
+                NameExpressionNode: int {
+                  NameNode {
+                    i
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      ReturnNode {
+        NameExpressionNode: particle[] {
+          NameNode {
+            particles
+          }
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    TypeNameNode: void {
+      NameNode {
+        void
+      }
+    }
+    NameNode {
+      simulate
+    }
+    ParameterNode {
+      TypeNameNode: int {
+        NameNode {
+          int
+        }
+      }
+      NameNode {
+        num_steps
+      }
+    }
+    BlockNode {
+      VarDefStatementNode {
+        VarDefNode {
+          ArrayTypeNameNode: particle[] {
+            TypeNameNode: particle {
+              NameNode {
+                particle
+              }
+            }
+          }
+          NameNode {
+            particles
+          }
+          CallNode: particle[] {
+            NameNode {
+              make_particles
+            }
+            CallNode: int {
+              NameNode {
+                num_particles
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          StringNode: string {
+            "Initial"
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            print_particle_positions
+          }
+          NameExpressionNode: particle[] {
+            NameNode {
+              particles
+            }
+          }
+        }
+      }
+      ForNode {
+        VarDefNode {
+          TypeNameNode: int {
+            NameNode {
+              int
+            }
+          }
+          NameNode {
+            step
+          }
+          IntegerNode: int {
+            0
+          }
+        }
+        LessNode: boolean {
+          NameExpressionNode: int {
+            NameNode {
+              step
+            }
+          }
+          NameExpressionNode: int {
+            NameNode {
+              num_steps
+            }
+          }
+        }
+        PrefixIncrNode: int {
+          NameExpressionNode: int {
+            NameNode {
+              step
+            }
+          }
+        }
+        BlockNode {
+          ExpressionStatementNode {
+            CallNode: void {
+              NameNode {
+                println
+              }
+              PlusNode: string {
+                StringNode: string {
+                  "Step "
+                }
+                PlusNode: int {
+                  NameExpressionNode: int {
+                    NameNode {
+                      step
+                    }
+                  }
+                  IntegerNode: int {
+                    1
+                  }
+                }
+              }
+            }
+          }
+          ForNode {
+            VarDefNode {
+              TypeNameNode: int {
+                NameNode {
+                  int
+                }
+              }
+              NameNode {
+                i
+              }
+              IntegerNode: int {
+                0
+              }
+            }
+            LessNode: boolean {
+              NameExpressionNode: int {
+                NameNode {
+                  i
+                }
+              }
+              CallNode: int {
+                NameNode {
+                  num_particles
+                }
+              }
+            }
+            PrefixIncrNode: int {
+              NameExpressionNode: int {
+                NameNode {
+                  i
+                }
+              }
+            }
+            BlockNode {
+              ExpressionStatementNode {
+                AssignNode: double {
+                  FieldAccessNode: double {
+                    ArrayIndexNode: particle {
+                      NameExpressionNode: particle[] {
+                        NameNode {
+                          particles
+                        }
+                      }
+                      NameExpressionNode: int {
+                        NameNode {
+                          i
+                        }
+                      }
+                    }
+                    NameNode {
+                      x_acc
+                    }
+                  }
+                  IntegerNode: int {
+                    0
+                  }
+                }
+              }
+              ExpressionStatementNode {
+                AssignNode: double {
+                  FieldAccessNode: double {
+                    ArrayIndexNode: particle {
+                      NameExpressionNode: particle[] {
+                        NameNode {
+                          particles
+                        }
+                      }
+                      NameExpressionNode: int {
+                        NameNode {
+                          i
+                        }
+                      }
+                    }
+                    NameNode {
+                      y_acc
+                    }
+                  }
+                  IntegerNode: int {
+                    0
+                  }
+                }
+              }
+              ForNode {
+                VarDefNode {
+                  TypeNameNode: int {
+                    NameNode {
+                      int
+                    }
+                  }
+                  NameNode {
+                    j
+                  }
+                  IntegerNode: int {
+                    0
+                  }
+                }
+                LessNode: boolean {
+                  NameExpressionNode: int {
+                    NameNode {
+                      j
+                    }
+                  }
+                  CallNode: int {
+                    NameNode {
+                      num_particles
+                    }
+                  }
+                }
+                PrefixIncrNode: int {
+                  NameExpressionNode: int {
+                    NameNode {
+                      j
+                    }
+                  }
+                }
+                BlockNode {
+                  ExpressionStatementNode {
+                    CallNode: void {
+                      NameNode {
+                        apply_force
+                      }
+                      ArrayIndexNode: particle {
+                        NameExpressionNode: particle[] {
+                          NameNode {
+                            particles
+                          }
+                        }
+                        NameExpressionNode: int {
+                          NameNode {
+                            i
+                          }
+                        }
+                      }
+                      ArrayIndexNode: particle {
+                        NameExpressionNode: particle[] {
+                          NameNode {
+                            particles
+                          }
+                        }
+                        NameExpressionNode: int {
+                          NameNode {
+                            j
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          ForNode {
+            VarDefNode {
+              TypeNameNode: int {
+                NameNode {
+                  int
+                }
+              }
+              NameNode {
+                i
+              }
+              IntegerNode: int {
+                0
+              }
+            }
+            LessNode: boolean {
+              NameExpressionNode: int {
+                NameNode {
+                  i
+                }
+              }
+              CallNode: int {
+                NameNode {
+                  num_particles
+                }
+              }
+            }
+            PrefixIncrNode: int {
+              NameExpressionNode: int {
+                NameNode {
+                  i
+                }
+              }
+            }
+            BlockNode {
+              ExpressionStatementNode {
+                CallNode: void {
+                  NameNode {
+                    move_particle
+                  }
+                  ArrayIndexNode: particle {
+                    NameExpressionNode: particle[] {
+                      NameNode {
+                        particles
+                      }
+                    }
+                    NameExpressionNode: int {
+                      NameNode {
+                        i
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          ExpressionStatementNode {
+            CallNode: void {
+              NameNode {
+                print_particle_positions
+              }
+              NameExpressionNode: particle[] {
+                NameNode {
+                  particles
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    TypeNameNode: void {
+      NameNode {
+        void
+      }
+    }
+    NameNode {
+      main
+    }
+    ParameterNode {
+      ArrayTypeNameNode: string[] {
+        TypeNameNode: string {
+          NameNode {
+            string
+          }
+        }
+      }
+      NameNode {
+        args
+      }
+    }
+    BlockNode {
+      IfNode {
+        GreaterNode: boolean {
+          FieldAccessNode: int {
+            NameExpressionNode: string[] {
+              NameNode {
+                args
+              }
+            }
+            NameNode {
+              length
+            }
+          }
+          IntegerNode: int {
+            0
+          }
+        }
+        BlockNode {
+          ExpressionStatementNode {
+            CallNode: void {
+              NameNode {
+                simulate
+              }
+              CallNode: int {
+                NameNode {
+                  string_to_int
+                }
+                ArrayIndexNode: string {
+                  NameExpressionNode: string[] {
+                    NameNode {
+                      args
+                    }
+                  }
+                  IntegerNode: int {
+                    0
+                  }
+                }
+              }
+            }
+          }
+        }
+        BlockNode {
+          ExpressionStatementNode {
+            CallNode: void {
+              NameNode {
+                simulate
+              }
+              CallNode: int {
+                NameNode {
+                  num_steps
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

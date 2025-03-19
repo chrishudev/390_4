@@ -1,0 +1,194 @@
+ProgramNode {
+  FunctionDeclNode {
+    TypeNameNode: void {
+      NameNode {
+        void
+      }
+    }
+    NameNode {
+      main
+    }
+    ParameterNode {
+      ArrayTypeNameNode: string[] {
+        TypeNameNode: string {
+          NameNode {
+            string
+          }
+        }
+      }
+      NameNode {
+        args
+      }
+    }
+    BlockNode {
+      VarDefStatementNode {
+        VarDefNode {
+          TypeNameNode: int {
+            NameNode {
+              int
+            }
+          }
+          NameNode {
+            x
+          }
+          IntegerNode: int {
+            3
+          }
+        }
+      }
+      VarDefStatementNode {
+        VarDefNode {
+          TypeNameNode: int {
+            NameNode {
+              int
+            }
+          }
+          NameNode {
+            y
+          }
+          NameExpressionNode: int {
+            NameNode {
+              x
+            }
+          }
+        }
+      }
+      VarDefStatementNode {
+        VarDefNode {
+          TypeNameNode: foo {
+            NameNode {
+              foo
+            }
+          }
+          NameNode {
+            f
+          }
+          NewNode: foo {
+            TypeNameNode: foo {
+              NameNode {
+                foo
+              }
+            }
+          }
+        }
+      }
+      VarDefStatementNode {
+        VarDefNode {
+          TypeNameNode: foo {
+            NameNode {
+              foo
+            }
+          }
+          NameNode {
+            g
+          }
+          NameExpressionNode: foo {
+            NameNode {
+              f
+            }
+          }
+        }
+      }
+      ForNode {
+        VarDefNode {
+          TypeNameNode: int {
+            NameNode {
+              int
+            }
+          }
+          NameNode {
+            w
+          }
+          IntegerNode: int {
+            0
+          }
+        }
+        BooleanNode: boolean {
+          true
+        }
+        NameExpressionNode: foo {
+          NameNode {
+            g
+          }
+        }
+        BlockNode {
+          VarDefStatementNode {
+            VarDefNode {
+              TypeNameNode: int {
+                NameNode {
+                  int
+                }
+              }
+              NameNode {
+                z
+              }
+              NameExpressionNode: int {
+                NameNode {
+                  x
+                }
+              }
+            }
+          }
+          ExpressionStatementNode {
+            CallNode: void {
+              NameNode {
+                println
+              }
+              CallNode: string {
+                NameNode {
+                  int_to_string
+                }
+                NameExpressionNode: int {
+                  NameNode {
+                    w
+                  }
+                }
+              }
+            }
+          }
+          ExpressionStatementNode {
+            CallNode: void {
+              NameNode {
+                println
+              }
+              CallNode: string {
+                NameNode {
+                  int_to_string
+                }
+                NameExpressionNode: int {
+                  NameNode {
+                    y
+                  }
+                }
+              }
+            }
+          }
+          ExpressionStatementNode {
+            CallNode: void {
+              NameNode {
+                println
+              }
+              CallNode: string {
+                NameNode {
+                  int_to_string
+                }
+                NameExpressionNode: int {
+                  NameNode {
+                    z
+                  }
+                }
+              }
+            }
+          }
+          BreakNode {
+          }
+        }
+      }
+    }
+  }
+  StructDeclNode: foo {
+    NameNode {
+      foo
+    }
+  }
+}

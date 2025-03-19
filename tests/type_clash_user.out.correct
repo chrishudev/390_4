@@ -1,0 +1,5 @@
+Finding declarations...
+tests/type_clash_user.uc:3:8: error (1): redefinition of type A, previously defined at line 1:8
+struct A {};
+       ^
+1 error generated in phase 1.

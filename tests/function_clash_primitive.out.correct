@@ -1,0 +1,5 @@
+Finding declarations...
+tests/function_clash_primitive.uc:1:6: error (1): redefinition of function print, previously defined at line <builtin>
+void print() {}
+     ^~~~^
+1 error generated in phase 1.

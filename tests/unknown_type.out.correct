@@ -1,0 +1,27 @@
+Finding declarations...
+Resolving types...
+tests/unknown_type.uc:2:3: error (2): undefined type foo
+  foo x;
+  ^~^
+tests/unknown_type.uc:3:3: error (2): undefined type bar
+  bar y;
+  ^~^
+tests/unknown_type.uc:6:1: error (2): undefined type baz
+baz hello(world x) {
+^~^
+tests/unknown_type.uc:6:11: error (2): undefined type world
+baz hello(world x) {
+          ^~~~^
+tests/unknown_type.uc:7:3: error (2): undefined type fie
+  fie y = 0;
+  ^~^
+tests/unknown_type.uc:8:7: error (2): undefined type zxcv
+  new zxcv[]{};
+      ^~~^
+tests/unknown_type.uc:9:7: error (2): undefined type B
+  new B[]{ new C[]{} };
+      ^
+tests/unknown_type.uc:9:16: error (2): undefined type C
+  new B[]{ new C[]{} };
+               ^
+8 errors generated in phase 2.

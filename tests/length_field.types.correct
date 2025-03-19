@@ -1,0 +1,194 @@
+ProgramNode {
+  FunctionDeclNode {
+    TypeNameNode: void {
+      NameNode {
+        void
+      }
+    }
+    NameNode {
+      main
+    }
+    ParameterNode {
+      ArrayTypeNameNode: string[] {
+        TypeNameNode: string {
+          NameNode {
+            string
+          }
+        }
+      }
+      NameNode {
+        args
+      }
+    }
+    BlockNode {
+      BlockNode {
+        VarDefStatementNode {
+          VarDefNode {
+            ArrayTypeNameNode: string[] {
+              TypeNameNode: string {
+                NameNode {
+                  string
+                }
+              }
+            }
+            NameNode {
+              z
+            }
+            NameExpressionNode: string[] {
+              NameNode {
+                args
+              }
+            }
+          }
+        }
+        ExpressionStatementNode {
+          CallNode: void {
+            NameNode {
+              println
+            }
+            PlusNode: string {
+              StringNode: string {
+                ""
+              }
+              FieldAccessNode: int {
+                NameExpressionNode: string[] {
+                  NameNode {
+                    z
+                  }
+                }
+                NameNode {
+                  length
+                }
+              }
+            }
+          }
+        }
+      }
+      BlockNode {
+        VarDefStatementNode {
+          VarDefNode {
+            TypeNameNode: foo {
+              NameNode {
+                foo
+              }
+            }
+            NameNode {
+              z
+            }
+            NewNode: foo {
+              TypeNameNode: foo {
+                NameNode {
+                  foo
+                }
+              }
+              IntegerNode: int {
+                3
+              }
+              StringNode: string {
+                "hello"
+              }
+            }
+          }
+        }
+        ExpressionStatementNode {
+          CallNode: void {
+            NameNode {
+              println
+            }
+            FieldAccessNode: string {
+              NameExpressionNode: foo {
+                NameNode {
+                  z
+                }
+              }
+              NameNode {
+                length
+              }
+            }
+          }
+        }
+        ExpressionStatementNode {
+          AssignNode: string {
+            FieldAccessNode: string {
+              NameExpressionNode: foo {
+                NameNode {
+                  z
+                }
+              }
+              NameNode {
+                length
+              }
+            }
+            StringNode: string {
+              "world"
+            }
+          }
+        }
+        ExpressionStatementNode {
+          CallNode: void {
+            NameNode {
+              println
+            }
+            FieldAccessNode: string {
+              NameExpressionNode: foo {
+                NameNode {
+                  z
+                }
+              }
+              NameNode {
+                length
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  FunctionDeclNode {
+    TypeNameNode: void {
+      NameNode {
+        void
+      }
+    }
+    NameNode {
+      bar
+    }
+    ParameterNode {
+      TypeNameNode: foo {
+        NameNode {
+          foo
+        }
+      }
+      NameNode {
+        f
+      }
+    }
+    BlockNode {
+    }
+  }
+  StructDeclNode: foo {
+    NameNode {
+      foo
+    }
+    FieldDeclNode {
+      TypeNameNode: int {
+        NameNode {
+          int
+        }
+      }
+      NameNode {
+        x
+      }
+    }
+    FieldDeclNode {
+      TypeNameNode: string {
+        NameNode {
+          string
+        }
+      }
+      NameNode {
+        length
+      }
+    }
+  }
+}
