@@ -540,12 +540,9 @@ class StructDeclNode(DeclNode):
         self.name = children
         self.fielddecls = attributes
         self.position = position
-        '''
-        type = env.lookup_type(0, position, self.name.raw, self)
-        if type is None:
-            type = env.add_type(0, position, self.name.raw, self)
-        self.type = type
-        '''
+
+    def find_decls(self, ctx):
+        ctx.global_env.add_type(ctx.phase, self.position, self.name.raw, self)
 
 
 @dataclass
