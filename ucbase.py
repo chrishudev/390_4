@@ -536,8 +536,8 @@ class StructDeclNode(DeclNode):
     local_env: Optional[VarEnv] = attribute(None)
 
     # add your code below
-    def __init__(self, position, children, attributes):
-        self.name = children
+    def __init__(self, position, nameNode, attributes):
+        self.name = nameNode
         self.fielddecls = attributes
         self.position = position
 
@@ -568,6 +568,16 @@ class FunctionDeclNode(DeclNode):
     )
 
     # add your code below
+    def __init__(self, position, typeName, nameNode, parameters, body):
+        self.position = position
+        self.rettype = typeName
+        self.name = nameNode
+        self.parameters = parameters
+        self.body = body
+
+    def find_decls(self, ctx):
+        ctx.global_env.add_function(
+            ctx.phase, self.position, self.name.raw, self)
 
 
 ######################
