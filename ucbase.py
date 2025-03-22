@@ -536,6 +536,16 @@ class StructDeclNode(DeclNode):
     local_env: Optional[VarEnv] = attribute(None)
 
     # add your code below
+    def __init__(self, position, children, attributes):
+        self.name = children
+        self.fielddecls = attributes
+        self.position = position
+        '''
+        type = env.lookup_type(0, position, self.name.raw, self)
+        if type is None:
+            type = env.add_type(0, position, self.name.raw, self)
+        self.type = type
+        '''
 
 
 @dataclass
