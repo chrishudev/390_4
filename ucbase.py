@@ -471,11 +471,7 @@ class TypeNameNode(BaseTypeNameNode):
         return f'UC_REFERENCE({self.name.raw})'
 
     # add your code below if necessary
-    def __init__(self, position, nameNode):
-        self.position = position
-        self.name = nameNode
-
-    def type_check(self, ctx):
+    def resolve_types(self, ctx):
         self.type = ctx.global_env.lookup_type(
             ctx.phase, self.position, self.name.raw)
 
@@ -498,13 +494,9 @@ class ArrayTypeNameNode(BaseTypeNameNode):
         return f'UC_ARRAY({self.elem_type.mangle()})'
 
     # add your code below if necessary
-    def __init__(self, position, typeName):
-        self.position = position
-        self.elem_type = typeName
-
-    def type_check(self, ctx):
+    def resolve_types(self, ctx):
         if self.elem_type.type is GlobalEnv.uncomputed_type:
-            self.elem_type.type_check(ctx)
+            self.elem_type.resolve_types(ctx)
         self.type = self.elem_type.type.array_type
 
 
@@ -538,7 +530,7 @@ class ParameterNode(ASTNode):
 
     # add your code below if necessary
     def resolve_types(self, ctx):
-        self.vartype.type_check(ctx)
+        self.vartype.resolve_types(ctx)
 
 
 @dataclass
@@ -556,11 +548,6 @@ class StructDeclNode(DeclNode):
     local_env: Optional[VarEnv] = attribute(None)
 
     # add your code below
-    def __init__(self, position, nameNode, attributes):
-        self.name = nameNode
-        self.fielddecls = attributes
-        self.position = position
-
     def find_decls(self, ctx):
         self.type = ctx.global_env.add_type(
             ctx.phase, self.position, self.name.raw, self)
@@ -593,36 +580,20 @@ class FunctionDeclNode(DeclNode):
     )
 
     # add your code below
-    def __init__(self, position, typeName, nameNode, parameters, body):
-        self.position = position
-        self.rettype = typeName
-        self.name = nameNode
-        self.parameters = parameters
-        self.body = body
-
     def find_decls(self, ctx):  # phase1
         self.func = ctx.global_env.add_function(
             ctx.phase, self.position, self.name.raw, self)
 
     def resolve_types(self, ctx):
         # compute rettype
-        self.rettype.type_check(ctx)
+        self.rettype.resolve_types(ctx)
+        self.func.rettype = self.rettype.type
         # compute parameters
         for i in range(len(self.parameters)):
-            self.parameters[i].vartype.type_check(ctx)
-        # compute body
-        self.body.type_check(ctx)
-
-    def type_check(self, ctx):  # phase2
-        # compute func.rettype
-        if self.rettype.type is GlobalEnv.uncomputed_type:
-            self.rettype.type_check(ctx)
-        self.func.rettype = self.rettype.type
-        # compute func.param_types
-        for i in range(len(self.parameters)):
-            if self.parameters[i].vartype.type is GlobalEnv.uncomputed_type:
-                self.parameters[i].vartype.type_check(ctx)
+            self.parameters[i].vartype.resolve_types(ctx)
             self.func.param_types.append(self.parameters[i].vartype.type)
+        # compute body
+        self.body.resolve_types(ctx)
 
 ######################
 # Printing Functions #

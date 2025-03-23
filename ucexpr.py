@@ -145,13 +145,8 @@ class NewNode(ExpressionNode):
     args: List[ExpressionNode]
 
     # add your code below
-    def __init__(self, position, typeName, attributes):  # phase2
-        self.position = position
-        self.typename = typeName
-        self.args = attributes
-
-    def type_check(self, ctx):  # phase2
-        self.typename.type_check(ctx)
+    def resolve_types(self, ctx):  # phase2
+        self.typename.resolve_types(ctx)
         self.type = self.typename.type
 
 

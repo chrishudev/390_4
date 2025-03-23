@@ -32,9 +32,9 @@ class BlockNode(StatementNode):
     statements: List[StatementNode]
 
     # add your code below if necessary
-    def type_check(self, ctx):  # phase2
+    def resolve_types(self, ctx):  # phase2
         for i in range(len(self.statements)):
-            self.statements[i].type_check(ctx)
+            self.statements[i].resolve_types(ctx)
 
 
 @dataclass
@@ -135,8 +135,8 @@ class ReturnNode(StatementNode):
     expr: Optional[ExpressionNode]
 
     # add your code below
-    def type_check(self, ctx):  # phase2
-        self.expr.type_check(ctx)
+    def resolve_types(self, ctx):  # phase2
+        self.expr.resolve_types(ctx)
 
 
 @dataclass
@@ -165,5 +165,5 @@ class ExpressionStatementNode(StatementNode):
     expr: ExpressionNode
 
     # add your code below if necessary
-    def type_check(self, ctx):  # phase2
-        self.expr.type_check(ctx)
+    def resolve_types(self, ctx):  # phase2
+        self.expr.resolve_types(ctx)
