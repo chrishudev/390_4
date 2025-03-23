@@ -471,6 +471,13 @@ class TypeNameNode(BaseTypeNameNode):
         return f'UC_REFERENCE({self.name.raw})'
 
     # add your code below if necessary
+    def __init__(self, position, nameNode):
+        self.position = position
+        self.name = nameNode
+
+    def type_check(self, ctx):
+        self.type = ctx.global_env.lookup_type(
+            ctx.phase, self.position, self.name.raw)
 
 
 @dataclass
@@ -491,6 +498,12 @@ class ArrayTypeNameNode(BaseTypeNameNode):
         return f'UC_ARRAY({self.elem_type.mangle()})'
 
     # add your code below if necessary
+    def __init__(self, position, typeName):
+        self.position = position
+        self.elem_type = typeName
+
+    def type_check(self, ctx):
+        self.type = self.elem_type.type_check(ctx)  # TODO: fix w/ array_type
 
 
 @dataclass
@@ -542,7 +555,8 @@ class StructDeclNode(DeclNode):
         self.position = position
 
     def find_decls(self, ctx):
-        ctx.global_env.add_type(ctx.phase, self.position, self.name.raw, self)
+        self.type = ctx.global_env.add_type(
+            ctx.phase, self.position, self.name.raw, self)
 
 
 @dataclass
@@ -576,8 +590,11 @@ class FunctionDeclNode(DeclNode):
         self.body = body
 
     def find_decls(self, ctx):
-        ctx.global_env.add_function(
+        self.func = ctx.global_env.add_function(
             ctx.phase, self.position, self.name.raw, self)
+
+    # def type_check(self, ctx):
+        # self.rettype = self.rettype.type_check(ctx)
 
 
 ######################
