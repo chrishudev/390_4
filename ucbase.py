@@ -520,6 +520,9 @@ class FieldDeclNode(ASTNode):
     name: NameNode
 
     # add your code below if necessary
+    def resolve_types(self, ctx):
+        self.vartype.type = ctx.global_env.lookup_type(
+            ctx.phase, self.position, self.vartype.name.raw)
 
 
 @dataclass
@@ -534,6 +537,8 @@ class ParameterNode(ASTNode):
     name: NameNode
 
     # add your code below if necessary
+    def resolve_types(self, ctx):
+        self.vartype.type_check(ctx)
 
 
 @dataclass
@@ -559,6 +564,10 @@ class StructDeclNode(DeclNode):
     def find_decls(self, ctx):
         self.type = ctx.global_env.add_type(
             ctx.phase, self.position, self.name.raw, self)
+
+    def resolve_types(self, ctx):
+        for i in range(len(self.fielddecls)):
+            self.fielddecls[i].resolve_types(ctx)
 
 
 @dataclass
@@ -595,6 +604,15 @@ class FunctionDeclNode(DeclNode):
         self.func = ctx.global_env.add_function(
             ctx.phase, self.position, self.name.raw, self)
 
+    def resolve_types(self, ctx):
+        # compute rettype
+        self.rettype.type_check(ctx)
+        # compute parameters
+        for i in range(len(self.parameters)):
+            self.parameters[i].vartype.type_check(ctx)
+        # compute body
+        self.body.type_check(ctx)
+
     def type_check(self, ctx):  # phase2
         # compute func.rettype
         if self.rettype.type is GlobalEnv.uncomputed_type:
@@ -605,8 +623,6 @@ class FunctionDeclNode(DeclNode):
             if self.parameters[i].vartype.type is GlobalEnv.uncomputed_type:
                 self.parameters[i].vartype.type_check(ctx)
             self.func.param_types.append(self.parameters[i].vartype.type)
-        # compute self.body types
-        self.body.type_check(ctx)
 
 ######################
 # Printing Functions #
