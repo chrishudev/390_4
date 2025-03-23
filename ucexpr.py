@@ -128,6 +128,9 @@ class CallNode(ExpressionNode):
     )
 
     # add your code below
+    def resolve_calls(self, ctx):
+        self.func = ctx.global_env.lookup_function(
+            ctx.phase, self.position, self.name.raw)
 
 
 @dataclass
