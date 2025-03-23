@@ -12,7 +12,7 @@ from typing import List, Optional
 from ucbase import attribute, GlobalEnv
 import ucbase
 # uncomment this import when you need it
-# from ucerror import error
+from ucerror import error
 import ucfunctions
 import uctypes
 
@@ -142,13 +142,14 @@ class NewNode(ExpressionNode):
     args: List[ExpressionNode]
 
     # add your code below
-    def __init__(self, position, typeName, attributes):
+    def __init__(self, position, typeName, attributes):  # phase2
         self.position = position
         self.typename = typeName
         self.args = attributes
 
-    def type_check(self, ctx):
-        self.type = self.typename.type_check(ctx)
+    def type_check(self, ctx):  # phase2
+        self.typename.type_check(ctx)
+        self.type = self.typename.type
 
 
 @dataclass

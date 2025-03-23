@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from typing import List, Optional
 from ucexpr import ExpressionNode
 # uncomment this import when you need it
-# from ucerror import error
+from ucerror import error
 import ucbase
 
 
@@ -32,6 +32,9 @@ class BlockNode(StatementNode):
     statements: List[StatementNode]
 
     # add your code below if necessary
+    def type_check(self, ctx):  # phase2
+        for i in range(len(self.statements)):
+            self.statements[i].type_check(ctx)
 
 
 @dataclass
@@ -132,6 +135,8 @@ class ReturnNode(StatementNode):
     expr: Optional[ExpressionNode]
 
     # add your code below
+    def type_check(self, ctx):  # phase2
+        self.expr.type_check(ctx)
 
 
 @dataclass
@@ -160,3 +165,5 @@ class ExpressionStatementNode(StatementNode):
     expr: ExpressionNode
 
     # add your code below if necessary
+    def type_check(self, ctx):  # phase2
+        self.expr.type_check(ctx)

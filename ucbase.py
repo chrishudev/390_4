@@ -503,7 +503,9 @@ class ArrayTypeNameNode(BaseTypeNameNode):
         self.elem_type = typeName
 
     def type_check(self, ctx):
-        self.type = self.elem_type.type_check(ctx)  # TODO: fix w/ array_type
+        if self.elem_type.type is GlobalEnv.uncomputed_type:
+            self.elem_type.type_check(ctx)
+        self.type = self.elem_type.type.array_type
 
 
 @dataclass
@@ -589,17 +591,27 @@ class FunctionDeclNode(DeclNode):
         self.parameters = parameters
         self.body = body
 
-    def find_decls(self, ctx):
+    def find_decls(self, ctx):  # phase1
         self.func = ctx.global_env.add_function(
             ctx.phase, self.position, self.name.raw, self)
 
-    # def type_check(self, ctx):
-        # self.rettype = self.rettype.type_check(ctx)
-
+    def type_check(self, ctx):  # phase2
+        # compute func.rettype
+        if self.rettype.type is GlobalEnv.uncomputed_type:
+            self.rettype.type_check(ctx)
+        self.func.rettype = self.rettype.type
+        # compute func.param_types
+        for i in range(len(self.parameters)):
+            if self.parameters[i].vartype.type is GlobalEnv.uncomputed_type:
+                self.parameters[i].vartype.type_check(ctx)
+            self.func.param_types.append(self.parameters[i].vartype.type)
+        # compute self.body types
+        self.body.type_check(ctx)
 
 ######################
 # Printing Functions #
 ######################
+
 
 @functools.singledispatch
 def child_str(child):
