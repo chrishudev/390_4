@@ -47,6 +47,10 @@ class BlockNode(StatementNode):
         # reset parent environment
         ctx['local_env'] = parent
 
+    def basic_control(self, ctx):
+        for stmnt in self.statements:
+            stmnt.basic_control(ctx)
+
 
 @dataclass
 class VarDefNode(ucbase.ASTNode):
@@ -117,6 +121,14 @@ class WhileNode(StatementNode):
     body: BlockNode
 
     # add your code below
+    def check_names(self, ctx):
+        self.test.check_names(ctx)
+        self.body.check_names(ctx)
+
+    def basic_control(self, ctx):
+        ctx['in_loop'] = True
+        self.body.basic_control(ctx)
+        ctx['in_loop'] = False
 
 
 @dataclass
@@ -147,12 +159,23 @@ class ForNode(StatementNode):
         # reset parent environment
         ctx['local_env'] = parent
 
+    def basic_control(self, ctx):
+        ctx['in_loop'] = True
+        self.body.basic_control(ctx)
+        ctx['in_loop'] = False
+
 
 @dataclass
 class BreakNode(StatementNode):
     """An AST node representing a break statement."""
 
     # add your code below
+    def basic_control(self, ctx):
+        if 'in_loop' in ctx:
+            if not ctx['in_loop']:
+                error(ctx.phase, self.position,
+                      "break only allowed within a loop")
+        error(ctx.phase, self.position, "break only allowed within a loop")
 
 
 @dataclass
@@ -160,6 +183,12 @@ class ContinueNode(StatementNode):
     """An AST node representing a continue statement."""
 
     # add your code below
+    def basic_control(self, ctx):
+        if 'in_loop' in ctx:
+            if not ctx['in_loop']:
+                error(ctx.phase, self.position,
+                      "continue only allowed within a loop")
+        error(ctx.phase, self.position, "continue only allowed within a loop")
 
 
 @dataclass
