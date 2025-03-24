@@ -64,7 +64,8 @@ class VarDefNode(ucbase.ASTNode):
     # add your code below if necessary
     def check_names(self, ctx):
         if self.vartype.type is ucbase.GlobalEnv.uncomputed_type:
-            self.vartype.resolve_types()
+            self.vartype.resolve_types(ctx)
+        self.expr.check_names(ctx)
         ctx['local_env'].add_variable(
             ctx.phase, self.position, self.name.raw, self.vartype.type)
 
