@@ -36,6 +36,8 @@ class ExpressionNode(ucbase.ASTNode):
         return False
 
     # add your code below if necessary
+    def is_literal(self):
+        return False
 
 
 ############
@@ -53,6 +55,8 @@ class LiteralNode(ExpressionNode):
     text: str
 
     # add your code below if necessary
+    def is_literal(self):
+        return True
 
 
 @dataclass
@@ -60,6 +64,9 @@ class IntegerNode(LiteralNode):
     """An AST node representing an integer (int or long) literal."""
 
     # add your code below
+    def resolve_types(self, ctx):
+        self.type = ctx.global_env.lookup_type(
+            ctx.phase, self.position, 'int')
 
 
 @dataclass
@@ -67,6 +74,9 @@ class DoubleNode(LiteralNode):
     """An AST node representing a double literal."""
 
     # add your code below
+    def resolve_types(self, ctx):
+        self.type = ctx.global_env.lookup_type(
+            ctx.phase, self.position, 'double')
 
 
 @dataclass
@@ -74,6 +84,9 @@ class StringNode(LiteralNode):
     """An AST node representing a string literal."""
 
     # add your code below
+    def resolve_types(self, ctx):
+        self.type = ctx.global_env.lookup_type(
+            ctx.phase, self.position, 'string')
 
 
 @dataclass
@@ -81,6 +94,9 @@ class BooleanNode(LiteralNode):
     """An AST node representing a boolean literal."""
 
     # add your code below
+    def resolve_types(self, ctx):
+        self.type = ctx.global_env.lookup_type(
+            ctx.phase, self.position, 'boolean')
 
 
 @dataclass
@@ -90,6 +106,9 @@ class NullNode(LiteralNode):
     text: str = 'nullptr'
 
     # add your code below
+    def resolve_types(self, ctx):
+        self.type = ctx.global_env.lookup_type(
+            ctx.phase, self.position, 'null')
 
 
 ###################
@@ -106,6 +125,9 @@ class NameExpressionNode(ExpressionNode):
     name: ucbase.NameNode
 
     # add your code below
+    def check_names(self, ctx):
+        self.type = ctx['local_env'].get_type(
+            ctx.phase, self.position, self.name.raw)
 
 
 #######################
@@ -287,6 +309,11 @@ class BinaryOpNode(ExpressionNode):
     op_name: str
 
     # add your code below if necessary
+    def check_names(self, ctx):
+        if not self.lhs.is_literal():
+            self.lhs.check_names(ctx)
+        if not self.rhs.is_literal():
+            self.lhs.check_names(ctx)
 
 
 @dataclass

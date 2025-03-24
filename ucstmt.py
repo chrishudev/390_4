@@ -36,6 +36,17 @@ class BlockNode(StatementNode):
         for i in range(len(self.statements)):
             self.statements[i].resolve_types(ctx)
 
+    def check_names(self, ctx):
+        # set local environment
+        parent = ctx['local_env']
+        self.env = ucbase.VarEnv(parent, ctx.global_env)
+        ctx['local_env'] = self.env
+        # check statements
+        for stmnt in self.statements:
+            stmnt.check_names(ctx)
+        # reset parent environment
+        ctx['local_env'] = parent
+
 
 @dataclass
 class VarDefNode(ucbase.ASTNode):
@@ -51,6 +62,11 @@ class VarDefNode(ucbase.ASTNode):
     expr: ExpressionNode
 
     # add your code below if necessary
+    def check_names(self, ctx):
+        if self.vartype.type is ucbase.GlobalEnv.uncomputed_type:
+            self.vartype.resolve_types()
+        ctx['local_env'].add_variable(
+            ctx.phase, self.position, self.name.raw, self.vartype.type)
 
 
 @dataclass
@@ -63,6 +79,8 @@ class VarDefStatementNode(StatementNode):
     vardef: VarDefNode
 
     # add your code below if necessary
+    def check_names(self, ctx):
+        self.vardef.check_names(ctx)
 
 
 @dataclass
@@ -78,6 +96,13 @@ class IfNode(StatementNode):
     else_block: BlockNode
 
     # add your code below
+    def check_names(self, ctx):
+        # check test
+        if not self.test.is_literal():
+            self.test.check_names(ctx)
+        # check then_block & else_block
+        self.then_block.check_names(ctx)
+        self.else_block.check_names(ctx)
 
 
 @dataclass
@@ -109,6 +134,17 @@ class ForNode(StatementNode):
     body: BlockNode
 
     # add your code below
+    def check_names(self, ctx):
+        # set local environment
+        parent = ctx['local_env']
+        self.env = ucbase.VarEnv(parent, ctx.global_env)
+        ctx['local_env'] = self.env
+        # check names in local environment
+        self.init.check_names(ctx)
+        self.test.check_names(ctx)
+        self.update.check_names(ctx)
+        # reset parent environment
+        ctx['local_env'] = parent
 
 
 @dataclass

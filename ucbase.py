@@ -556,6 +556,15 @@ class StructDeclNode(DeclNode):
         for i in range(len(self.fielddecls)):
             self.fielddecls[i].resolve_types(ctx)
 
+    def check_names(self, ctx):
+        # set local environment
+        parent = ctx['local_env']
+        self.env = VarEnv(parent, ctx.global_env)
+        ctx['local_env'] = self.env
+        # check fielddecls
+        # reset parent environment
+        ctx['local_env'] = parent
+
 
 @dataclass
 class FunctionDeclNode(DeclNode):
@@ -594,6 +603,20 @@ class FunctionDeclNode(DeclNode):
             self.func.param_types.append(self.parameters[i].vartype.type)
         # compute body
         self.body.resolve_types(ctx)
+
+    def check_names(self, ctx):
+        # set local environment
+        parent = ctx['local_env']
+        self.env = VarEnv(parent, ctx.global_env)
+        ctx['local_env'] = self.env
+        # check parameters
+        for param in self.parameters:
+            self.env.add_variable(ctx.phase, self.position,
+                                  param.name.raw, param.vartype.type)
+        # check body
+        self.body.check_names(ctx)
+        # reset parent environment
+        ctx['local_env'] = parent
 
 ######################
 # Printing Functions #
