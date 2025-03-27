@@ -12,7 +12,7 @@ from typing import List, Optional
 from ucbase import attribute, GlobalEnv
 import ucbase
 # uncomment this import when you need it
-from ucerror import error
+# from ucerror import error
 import ucfunctions
 import uctypes
 
@@ -37,6 +37,7 @@ class ExpressionNode(ucbase.ASTNode):
 
     # add your code below if necessary
     def is_literal(self):
+        """Check whether ExpressionNode is a literal."""
         return False
 
 
@@ -56,6 +57,7 @@ class LiteralNode(ExpressionNode):
 
     # add your code below if necessary
     def is_literal(self):
+        """Check whether ExpressionNode is a literal."""
         return True
 
 
@@ -64,7 +66,8 @@ class IntegerNode(LiteralNode):
     """An AST node representing an integer (int or long) literal."""
 
     # add your code below
-    def resolve_types(self, ctx):
+    def type_check(self, ctx):
+        """Type check for IntergerNode."""
         self.type = ctx.global_env.lookup_type(
             ctx.phase, self.position, 'int')
 
@@ -74,7 +77,8 @@ class DoubleNode(LiteralNode):
     """An AST node representing a double literal."""
 
     # add your code below
-    def resolve_types(self, ctx):
+    def type_check(self, ctx):
+        """Type check for DoubleNode."""
         self.type = ctx.global_env.lookup_type(
             ctx.phase, self.position, 'double')
 
@@ -84,7 +88,8 @@ class StringNode(LiteralNode):
     """An AST node representing a string literal."""
 
     # add your code below
-    def resolve_types(self, ctx):
+    def type_check(self, ctx):
+        """Type check for StringNode."""
         self.type = ctx.global_env.lookup_type(
             ctx.phase, self.position, 'string')
 
@@ -94,7 +99,8 @@ class BooleanNode(LiteralNode):
     """An AST node representing a boolean literal."""
 
     # add your code below
-    def resolve_types(self, ctx):
+    def type_check(self, ctx):
+        """Type check for BooleanNode."""
         self.type = ctx.global_env.lookup_type(
             ctx.phase, self.position, 'boolean')
 
@@ -106,7 +112,8 @@ class NullNode(LiteralNode):
     text: str = 'nullptr'
 
     # add your code below
-    def resolve_types(self, ctx):
+    def type_check(self, ctx):
+        """Type check for NullNode."""
         self.type = ctx.global_env.lookup_type(
             ctx.phase, self.position, 'null')
 
@@ -126,6 +133,7 @@ class NameExpressionNode(ExpressionNode):
 
     # add your code below
     def check_names(self, ctx):
+        """Check name in NameExpressionNode."""
         self.type = ctx['local_env'].get_type(
             ctx.phase, self.position, self.name.raw)
 
@@ -151,8 +159,34 @@ class CallNode(ExpressionNode):
 
     # add your code below
     def resolve_calls(self, ctx):
+        """Resolve calls in CallNode and set func."""
         self.func = ctx.global_env.lookup_function(
             ctx.phase, self.position, self.name.raw)
+
+    def length_error(self, name, numps, numas):
+        """Make length error message."""
+        return f"function {name} expected {numps} arguments, got {numas}"
+
+    def type_error(self, index, ptype, atype):
+        """Make type error message."""
+        return f"type {atype} at {index} not compatible with {ptype} parameter"
+
+    def type_check(self, ctx):
+        """Type check for CallNode."""
+        # get callNode type
+        self.type = self.func.rettype
+        # type check on args
+        mssg = self.name + ": " + "; ".join(f"{a}" for a in self.args)
+        if len(self.func.param_types) != len(self.args):
+            mssg = self.length_error(self.func.name, len(
+                self.func.param_types), len(self.args))
+            ucbase.error(ctx.phase, self.position, mssg)
+        for index, arg in enumerate(self.args):
+            arg.type_check(ctx)
+            if self.func.param_types[index] is not arg.type:
+                mssg = self.type_error(
+                    index + 1, self.func.param_types[index], arg.type)
+                ucbase.error(ctx.phase, self.position, mssg)
 
 
 @dataclass
@@ -167,9 +201,14 @@ class NewNode(ExpressionNode):
     args: List[ExpressionNode]
 
     # add your code below
-    def resolve_types(self, ctx):  # phase2
+    def resolve_types(self, ctx):
+        """Resolve type of NewNode."""
         self.typename.resolve_types(ctx)
         self.type = self.typename.type
+
+    def type_check(self, ctx):
+        for index, _ in enumerate(self.args):
+            self.args[index].resolve_types(ctx)
 
 
 @dataclass
@@ -310,6 +349,7 @@ class BinaryOpNode(ExpressionNode):
 
     # add your code below if necessary
     def check_names(self, ctx):
+        """Check names in BinaryOpNode and children."""
         if not self.lhs.is_literal():
             self.lhs.check_names(ctx)
         if not self.rhs.is_literal():

@@ -32,15 +32,19 @@ class BlockNode(StatementNode):
     statements: List[StatementNode]
 
     # add your code below if necessary
-    def resolve_types(self, ctx):  # phase2
-        for i in range(len(self.statements)):
-            self.statements[i].resolve_types(ctx)
+    local_env = ucbase.VarEnv(None, None)
+
+    def resolve_types(self, ctx):
+        """Resolve types of statements in BlockNode."""
+        for index, _ in enumerate(self.statements):
+            self.statements[index].resolve_types(ctx)
 
     def check_names(self, ctx):
+        """Check names in BlockNode."""
         # set local environment
         parent = ctx['local_env']
-        self.env = ucbase.VarEnv(parent, ctx.global_env)
-        ctx['local_env'] = self.env
+        self.local_env = ucbase.VarEnv(parent, ctx.global_env)
+        ctx['local_env'] = self.local_env
         # check statements
         for stmnt in self.statements:
             stmnt.check_names(ctx)
@@ -48,8 +52,15 @@ class BlockNode(StatementNode):
         ctx['local_env'] = parent
 
     def basic_control(self, ctx):
+        """Check basic control in BlockNode."""
         for stmnt in self.statements:
             stmnt.basic_control(ctx)
+
+    def type_check(self, ctx):
+        """Type check for BlockNode."""
+        ctx['local_env'] = self.local_env
+        for stmnt in self.statements:
+            stmnt.type_check(ctx)
 
 
 @dataclass
@@ -67,6 +78,7 @@ class VarDefNode(ucbase.ASTNode):
 
     # add your code below if necessary
     def check_names(self, ctx):
+        """Check names in VarDefNode."""
         if self.vartype.type is ucbase.GlobalEnv.uncomputed_type:
             self.vartype.resolve_types(ctx)
         self.expr.check_names(ctx)
@@ -85,6 +97,7 @@ class VarDefStatementNode(StatementNode):
 
     # add your code below if necessary
     def check_names(self, ctx):
+        """Check name of vardef in VarDefStatementNode."""
         self.vardef.check_names(ctx)
 
 
@@ -102,6 +115,7 @@ class IfNode(StatementNode):
 
     # add your code below
     def check_names(self, ctx):
+        """Check names in IfNode."""
         # check test
         if not self.test.is_literal():
             self.test.check_names(ctx)
@@ -122,10 +136,12 @@ class WhileNode(StatementNode):
 
     # add your code below
     def check_names(self, ctx):
+        """Check names in WhileNode."""
         self.test.check_names(ctx)
         self.body.check_names(ctx)
 
     def basic_control(self, ctx):
+        """Check basic control in WhileNode."""
         ctx['in_loop'] = True
         self.body.basic_control(ctx)
         ctx['in_loop'] = False
@@ -147,11 +163,14 @@ class ForNode(StatementNode):
     body: BlockNode
 
     # add your code below
+    local_env = ucbase.VarEnv(None, None)
+
     def check_names(self, ctx):
+        """Check names in ForNode."""
         # set local environment
         parent = ctx['local_env']
-        self.env = ucbase.VarEnv(parent, ctx.global_env)
-        ctx['local_env'] = self.env
+        self.local_env = ucbase.VarEnv(parent, ctx.global_env)
+        ctx['local_env'] = self.local_env
         # check names in local environment
         self.init.check_names(ctx)
         self.test.check_names(ctx)
@@ -160,6 +179,7 @@ class ForNode(StatementNode):
         ctx['local_env'] = parent
 
     def basic_control(self, ctx):
+        """Check basic control in ForNode."""
         ctx['in_loop'] = True
         self.body.basic_control(ctx)
         ctx['in_loop'] = False
@@ -171,6 +191,7 @@ class BreakNode(StatementNode):
 
     # add your code below
     def basic_control(self, ctx):
+        """Check basic control for break."""
         if 'in_loop' in ctx:
             if not ctx['in_loop']:
                 error(ctx.phase, self.position,
@@ -184,6 +205,7 @@ class ContinueNode(StatementNode):
 
     # add your code below
     def basic_control(self, ctx):
+        """Check basic control for continue."""
         if 'in_loop' in ctx:
             if not ctx['in_loop']:
                 error(ctx.phase, self.position,
@@ -201,7 +223,8 @@ class ReturnNode(StatementNode):
     expr: Optional[ExpressionNode]
 
     # add your code below
-    def resolve_types(self, ctx):  # phase2
+    def resolve_types(self, ctx):
+        """Resolve type of expr in ReturnNode."""
         self.expr.resolve_types(ctx)
 
 
@@ -231,5 +254,6 @@ class ExpressionStatementNode(StatementNode):
     expr: ExpressionNode
 
     # add your code below if necessary
-    def resolve_types(self, ctx):  # phase2
+    def resolve_types(self, ctx):
+        """Resolve type of expr in ExpressionStatementNode."""
         self.expr.resolve_types(ctx)

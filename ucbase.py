@@ -472,6 +472,7 @@ class TypeNameNode(BaseTypeNameNode):
 
     # add your code below if necessary
     def resolve_types(self, ctx):
+        """Resolve types for TypeNameNode."""
         self.type = ctx.global_env.lookup_type(
             ctx.phase, self.position, self.name.raw)
 
@@ -495,6 +496,7 @@ class ArrayTypeNameNode(BaseTypeNameNode):
 
     # add your code below if necessary
     def resolve_types(self, ctx):
+        """Resolve types for ArrayTypeNameNode."""
         if self.elem_type.type is GlobalEnv.uncomputed_type:
             self.elem_type.resolve_types(ctx)
         self.type = self.elem_type.type.array_type
@@ -513,8 +515,8 @@ class FieldDeclNode(ASTNode):
 
     # add your code below if necessary
     def resolve_types(self, ctx):
-        self.vartype.type = ctx.global_env.lookup_type(
-            ctx.phase, self.position, self.vartype.name.raw)
+        """Resolve types for FieldDeclNode."""
+        self.vartype.resolve_types(ctx)
 
 
 @dataclass
@@ -530,6 +532,7 @@ class ParameterNode(ASTNode):
 
     # add your code below if necessary
     def resolve_types(self, ctx):
+        """Resolve types for ParameterNode."""
         self.vartype.resolve_types(ctx)
 
 
@@ -549,21 +552,30 @@ class StructDeclNode(DeclNode):
 
     # add your code below
     def find_decls(self, ctx):
+        """Find declarations for struct."""
         self.type = ctx.global_env.add_type(
             ctx.phase, self.position, self.name.raw, self)
 
     def resolve_types(self, ctx):
-        for i in range(len(self.fielddecls)):
-            self.fielddecls[i].resolve_types(ctx)
+        """Resolve types for struct."""
+        for index, _ in enumerate(self.fielddecls):
+            self.fielddecls[index].resolve_types(ctx)
 
     def check_names(self, ctx):
+        """Check names for struct."""
         # set local environment
         parent = ctx['local_env']
-        self.env = VarEnv(parent, ctx.global_env)
-        ctx['local_env'] = self.env
+        self.local_env = VarEnv(parent, ctx.global_env)
+        ctx['local_env'] = self.local_env
         # check fielddecls
+        for decl in self.fielddecls:
+            self.local_env.add_variable(
+                ctx.phase, self.position, decl.name.raw, decl.vartype)
         # reset parent environment
         ctx['local_env'] = parent
+
+    def type_check(self, ctx):
+        return super().type_check(ctx)
 
 
 @dataclass
@@ -589,30 +601,35 @@ class FunctionDeclNode(DeclNode):
     )
 
     # add your code below
-    def find_decls(self, ctx):  # phase1
+    local_env = VarEnv(None, None)
+
+    def find_decls(self, ctx):
+        """Find declarations for function."""
         self.func = ctx.global_env.add_function(
             ctx.phase, self.position, self.name.raw, self)
 
     def resolve_types(self, ctx):
+        """Resolve types for function node."""
         # compute rettype
         self.rettype.resolve_types(ctx)
         self.func.rettype = self.rettype.type
         # compute parameters
-        for i in range(len(self.parameters)):
-            self.parameters[i].vartype.resolve_types(ctx)
-            self.func.param_types.append(self.parameters[i].vartype.type)
+        for index, _ in enumerate(self.parameters):
+            self.parameters[index].vartype.resolve_types(ctx)
+            self.func.param_types.append(self.parameters[index].vartype.type)
         # compute body
         self.body.resolve_types(ctx)
 
     def check_names(self, ctx):
+        """Check names for function."""
         # set local environment
         parent = ctx['local_env']
-        self.env = VarEnv(parent, ctx.global_env)
-        ctx['local_env'] = self.env
+        self.local_env = VarEnv(parent, ctx.global_env)
+        ctx['local_env'] = self.local_env
         # check parameters
         for param in self.parameters:
-            self.env.add_variable(ctx.phase, self.position,
-                                  param.name.raw, param.vartype.type)
+            self.local_env.add_variable(ctx.phase, self.position,
+                                        param.name.raw, param.vartype.type)
         # check body
         self.body.check_names(ctx)
         # reset parent environment
