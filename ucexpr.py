@@ -176,17 +176,18 @@ class CallNode(ExpressionNode):
         # get callNode type
         self.type = self.func.rettype
         # type check on args
-        mssg = self.name + ": " + "; ".join(f"{a}" for a in self.args)
         if len(self.func.param_types) != len(self.args):
             mssg = self.length_error(self.func.name, len(
                 self.func.param_types), len(self.args))
             ucbase.error(ctx.phase, self.position, mssg)
+            return
         for index, arg in enumerate(self.args):
             arg.type_check(ctx)
             if self.func.param_types[index] is not arg.type:
                 mssg = self.type_error(
                     index + 1, self.func.param_types[index], arg.type)
                 ucbase.error(ctx.phase, self.position, mssg)
+                return
 
 
 @dataclass
