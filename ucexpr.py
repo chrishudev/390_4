@@ -210,6 +210,7 @@ class NewNode(ExpressionNode):
     def type_check(self, ctx):
         for index, _ in enumerate(self.args):
             self.args[index].resolve_types(ctx)
+        self.type.check_args(ctx.phase, self.position, self.args)
 
 
 @dataclass
