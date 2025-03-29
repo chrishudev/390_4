@@ -253,7 +253,8 @@ class FieldAccessNode(ExpressionNode):
     def type_check(self, ctx):
         self.resolve_types(ctx)
         self.check_names(ctx)
-        self.type = self.receiver.type
+        self.type = self.receiver.type.lookup_field(
+            ctx.phase, self.position, self.field.raw, ctx.global_env)
 
 
 @dataclass

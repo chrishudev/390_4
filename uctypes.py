@@ -240,7 +240,10 @@ class UserType(Type):
         field if it is found, int otherwise.
         """
         # replace the code below with your solution
-        error(phase, position, f'lookup for {name} unimplemented')
+        for field in self.fields:
+            if field.name.raw == name:
+                return field.type
+        error(phase, position, f"{name} not in {self.name}")
         return _global_env.lookup_type(phase, position, 'int')
 
 

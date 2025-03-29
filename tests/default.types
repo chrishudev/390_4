@@ -1,0 +1,214 @@
+ProgramNode {
+  FunctionDeclNode {
+    TypeNameNode: void {
+      NameNode {
+        void
+      }
+    }
+    NameNode {
+      main
+    }
+    ParameterNode {
+      ArrayTypeNameNode: string[] {
+        TypeNameNode: string {
+          NameNode {
+            string
+          }
+        }
+      }
+      NameNode {
+        args
+      }
+    }
+    BlockNode {
+      VarDefStatementNode {
+        VarDefNode {
+          TypeNameNode: foo {
+            NameNode {
+              foo
+            }
+          }
+          NameNode {
+            f
+          }
+          NewNode: foo {
+            TypeNameNode: foo {
+              NameNode {
+                foo
+              }
+            }
+          }
+        }
+      }
+      VarDefStatementNode {
+        VarDefNode {
+          TypeNameNode: bar {
+            NameNode {
+              bar
+            }
+          }
+          NameNode {
+            b
+          }
+          NewNode: bar {
+            TypeNameNode: bar {
+              NameNode {
+                bar
+              }
+            }
+          }
+        }
+      }
+      VarDefStatementNode {
+        VarDefNode {
+          TypeNameNode: baz {
+            NameNode {
+              baz
+            }
+          }
+          NameNode {
+            z
+          }
+          NewNode: baz {
+            TypeNameNode: baz {
+              NameNode {
+                baz
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              int_to_string
+            }
+            FieldAccessNode: int {
+              NameExpressionNode: foo {
+                NameNode {
+                  f
+                }
+              }
+              NameNode {
+                x
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            EqualNode: boolean {
+              FieldAccessNode: foo {
+                NameExpressionNode: bar {
+                  NameNode {
+                    b
+                  }
+                }
+                NameNode {
+                  f
+                }
+              }
+              NullNode: null {
+              }
+            }
+          }
+        }
+      }
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          CallNode: string {
+            NameNode {
+              boolean_to_string
+            }
+            EqualNode: boolean {
+              FieldAccessNode: string[] {
+                NameExpressionNode: bar {
+                  NameNode {
+                    b
+                  }
+                }
+                NameNode {
+                  a
+                }
+              }
+              NullNode: null {
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  StructDeclNode: foo {
+    NameNode {
+      foo
+    }
+    FieldDeclNode: int {
+      TypeNameNode: int {
+        NameNode {
+          int
+        }
+      }
+      NameNode {
+        x
+      }
+    }
+  }
+  StructDeclNode: bar {
+    NameNode {
+      bar
+    }
+    FieldDeclNode: foo {
+      TypeNameNode: foo {
+        NameNode {
+          foo
+        }
+      }
+      NameNode {
+        f
+      }
+    }
+    FieldDeclNode: int {
+      TypeNameNode: int {
+        NameNode {
+          int
+        }
+      }
+      NameNode {
+        x
+      }
+    }
+    FieldDeclNode: string[] {
+      ArrayTypeNameNode: string[] {
+        TypeNameNode: string {
+          NameNode {
+            string
+          }
+        }
+      }
+      NameNode {
+        a
+      }
+    }
+  }
+  StructDeclNode: baz {
+    NameNode {
+      baz
+    }
+  }
+}
