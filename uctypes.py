@@ -216,18 +216,15 @@ class UserType(Type):
         an argument is incompatible.
         """
         # replace the code below with your solution
-        mssg = "; ".join(f"{a}" for a in args)
-        error(phase, position, mssg)
-        mssg = "; ".join(f"{f}" for f in self.fields)
-        error(phase, position, mssg)
         self.type = self.decl.type
         if len(self.fields) != len(args):
             mssg = f"{self.type} expected {len(self.fields)} arguments, got {len(args)}"
             error(phase, position, mssg)
             return False
         for index, arg in enumerate(args):
-            if self.fields[index].vartype is not arg.type:
+            if self.fields[index].type is not arg.type:
                 mssg = f"{self.type} expected {self.fields[index].vartype} at {index + 1}, got {arg.type}"
+                error(phase, position, mssg)
                 return False
 
     def lookup_field(self, phase, position, name, _global_env):

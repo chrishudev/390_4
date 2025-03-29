@@ -517,6 +517,7 @@ class FieldDeclNode(ASTNode):
     def resolve_types(self, ctx):
         """Resolve types for FieldDeclNode."""
         self.vartype.resolve_types(ctx)
+        self.type = self.vartype.type
 
 
 @dataclass
