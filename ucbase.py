@@ -514,10 +514,15 @@ class FieldDeclNode(ASTNode):
     name: NameNode
 
     # add your code below if necessary
+    def init_type(self, nulltype):
+        self.vartype.type = nulltype
+
+    def get_type(self):
+        return self.vartype.type
+
     def resolve_types(self, ctx):
         """Resolve types for FieldDeclNode."""
         self.vartype.resolve_types(ctx)
-        self.type = self.vartype.type
 
 
 @dataclass
@@ -532,6 +537,9 @@ class ParameterNode(ASTNode):
     name: NameNode
 
     # add your code below if necessary
+    def get_type(self):
+        return self.vartype.type
+
     def resolve_types(self, ctx):
         """Resolve types for ParameterNode."""
         self.vartype.resolve_types(ctx)
@@ -558,8 +566,8 @@ class StructDeclNode(DeclNode):
             ctx.phase, self.position, self.name.raw, self)
         # initialize to null
         for decl in self.fielddecls:
-            decl.type = ctx.global_env.lookup_type(
-                ctx.phase, self.position, 'null')
+            decl.init_type(ctx.global_env.lookup_type(
+                ctx.phase, self.position, 'null'))
 
     def resolve_types(self, ctx):
         """Resolve types for struct."""
@@ -618,7 +626,7 @@ class FunctionDeclNode(DeclNode):
         # compute parameters
         for index, _ in enumerate(self.parameters):
             self.parameters[index].vartype.resolve_types(ctx)
-            self.func.param_types.append(self.parameters[index].vartype.type)
+            self.func.param_types.append(self.parameters[index].get_type())
         # compute body
         self.body.resolve_types(ctx)
 
@@ -631,7 +639,7 @@ class FunctionDeclNode(DeclNode):
         # check parameters
         for param in self.parameters:
             self.local_env.add_variable(ctx.phase, self.position,
-                                        param.name.raw, param.vartype.type)
+                                        param.name.raw, param.get_type())
         # check body
         self.body.check_names(ctx)
         # reset parent environment

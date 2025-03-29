@@ -224,7 +224,7 @@ class UserType(Type):
             error(phase, position, mssg)
             return False
         for index, arg in enumerate(args):
-            if self.fields[index].type is not arg.type:
+            if self.fields[index].get_type() is not arg.type:
                 mssg = f"{self.type} expected {self.fields[index].vartype.name.raw} at {index + 1}, got {arg.type}"
                 error(phase, position, mssg)
                 return False
@@ -242,7 +242,7 @@ class UserType(Type):
         # replace the code below with your solution
         for field in self.fields:
             if field.name.raw == name:
-                return field.type
+                return field.get_type()
         error(phase, position, f"{name} not in {self.name}")
         return _global_env.lookup_type(phase, position, 'int')
 

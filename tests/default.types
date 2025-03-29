@@ -158,7 +158,7 @@ ProgramNode {
     NameNode {
       foo
     }
-    FieldDeclNode: int {
+    FieldDeclNode {
       TypeNameNode: int {
         NameNode {
           int
@@ -173,7 +173,7 @@ ProgramNode {
     NameNode {
       bar
     }
-    FieldDeclNode: foo {
+    FieldDeclNode {
       TypeNameNode: foo {
         NameNode {
           foo
@@ -183,7 +183,7 @@ ProgramNode {
         f
       }
     }
-    FieldDeclNode: int {
+    FieldDeclNode {
       TypeNameNode: int {
         NameNode {
           int
@@ -193,7 +193,7 @@ ProgramNode {
         x
       }
     }
-    FieldDeclNode: string[] {
+    FieldDeclNode {
       ArrayTypeNameNode: string[] {
         TypeNameNode: string {
           NameNode {
