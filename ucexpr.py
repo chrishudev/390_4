@@ -12,7 +12,7 @@ from typing import List, Optional
 from ucbase import attribute, GlobalEnv
 import ucbase
 # uncomment this import when you need it
-# from ucerror import error
+from ucerror import error
 import ucfunctions
 import uctypes
 
@@ -184,13 +184,13 @@ class CallNode(ExpressionNode):
         if len(self.func.param_types) != len(self.args):
             mssg = self.length_error(self.func.name, len(
                 self.func.param_types), len(self.args))
-            ucbase.error(ctx.phase, self.position, mssg)
+            error(ctx.phase, self.position, mssg)
             return False
         for index, arg in enumerate(self.args):
             if self.func.param_types[index] is not arg.type:
                 mssg = self.type_error(
                     index + 1, self.func.param_types[index], arg.type)
-                ucbase.error(ctx.phase, self.position, mssg)
+                error(ctx.phase, self.position, mssg)
                 return False
 
 
@@ -244,6 +244,25 @@ class ArrayIndexNode(ExpressionNode):
     index: ExpressionNode
 
     # add your code below
+    def resolve_types(self, ctx):
+        self.receiver.resolve_types(ctx)
+        self.index.resolve_types(ctx)
+
+    def check_names(self, ctx):
+        self.receiver.check_names(ctx)
+        self.index.check_names(ctx)
+
+    def type_check(self, ctx):
+        self.type = self.receiver.type
+        if not hasattr(self.receiver.type, 'elem_type'):
+            error(ctx.phase, self.position, f"Cannot index into non-array.")
+            return False
+        self.type = self.receiver.type.elem_type
+        if not self.index.type.is_integral():
+            error(ctx.phase, self.position,
+                  f"Cannot index non-integer {self.index.type} into array.")
+            return False
+        return True
 
 
 #####################
