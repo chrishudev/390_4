@@ -47,12 +47,12 @@ class Type:
 
     def is_numeric(self):
         """Return whether this type is a primitive numeric type."""
-        self.array_type.is_numeric()  # style fix
+        self.array_type.is_convertible_to(self)  # style fix
         return False
 
     def is_integral(self):
         """Return whether this type is a primitive integral type."""
-        self.array_type.is_numeric()  # style fix
+        self.array_type.is_numeric()
         return False
 
     def is_convertible_to(self, other):
@@ -105,7 +105,7 @@ class UncomputedType(Type):
 
     def check_args(self, _phase, _position, _args):
         """Check if the arguments are compatible with this type."""
-        self.elem_type.is_numeric()  # style fix
+        self.is_numeric()
         return True
 
 
