@@ -36,6 +36,9 @@ class ExpressionNode(ucbase.ASTNode):
         return False
 
     # add your code below if necessary
+    def get_type(self):
+        return self.type
+
     def is_literal(self):
         """Check whether ExpressionNode is a literal."""
         return False
@@ -323,6 +326,11 @@ class UnaryPrefixNode(ExpressionNode):
     op_name: str
 
     # add your code below if necessary
+    def get_type(self):
+        return self.expr.get_type()
+
+    def resolve_types(self, ctx):
+        self.expr.resolve_types(ctx)
 
 
 @dataclass

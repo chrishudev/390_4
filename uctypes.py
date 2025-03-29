@@ -130,7 +130,7 @@ class ArrayType(Type):
         """
         # replace the code below with your solution
         for arg in args:
-            if arg.type is not self.elem_type:
+            if arg.get_type() is not self.elem_type:
                 mssg = f"array of {self.elem_type} cannot be initialized with {arg.type}"
                 error(phase, _position, mssg)
                 return False

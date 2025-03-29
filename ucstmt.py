@@ -225,7 +225,12 @@ class ReturnNode(StatementNode):
     # add your code below
     def resolve_types(self, ctx):
         """Resolve type of expr in ReturnNode."""
+        if self.expr is None:
+            self.expr = ExpressionNode(self.position)
+            self.expr.type = ctx.global_env.lookup_type(
+                ctx.phase, self.position, 'void')
         self.expr.resolve_types(ctx)
+        return True
 
 
 @dataclass
