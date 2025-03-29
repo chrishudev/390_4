@@ -188,6 +188,8 @@ class CallNode(ExpressionNode):
         # get args type
         self.resolve_types(ctx)
         self.check_names(ctx)
+        for arg in self.args:
+            arg.type_check(ctx)
         # type check on args
         if len(self.func.param_types) != len(self.args):
             mssg = self.length_error(self.func.name, len(

@@ -216,6 +216,8 @@ class UserType(Type):
         an argument is incompatible.
         """
         # replace the code below with your solution
+        if len(args) == 0:
+            return True
         self.type = self.decl.type
         if len(self.fields) != len(args):
             mssg = f"{self.type} expected {len(self.fields)} arguments, got {len(args)}"
@@ -226,6 +228,7 @@ class UserType(Type):
                 mssg = f"{self.type} expected {self.fields[index].vartype.name.raw} at {index + 1}, got {arg.type}"
                 error(phase, position, mssg)
                 return False
+        return True
 
     def lookup_field(self, phase, position, name, _global_env):
         """Look up a field in this type.
