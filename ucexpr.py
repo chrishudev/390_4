@@ -377,6 +377,13 @@ class BinaryOpNode(ExpressionNode):
     op_name: str
 
     # add your code below if necessary
+    def resolve_types(self, ctx):
+        """Type check for IntergerNode."""
+        self.type = ctx.global_env.lookup_type(
+            ctx.phase, self.position, 'boolean')
+        self.lhs.resolve_types(ctx)
+        self.rhs.resolve_types(ctx)
+
     def check_names(self, ctx):
         """Check names in BinaryOpNode and children."""
         if not self.lhs.is_literal():
@@ -550,6 +557,11 @@ class AssignNode(BinaryOpNode):
     op_name: str = '='
 
     # add your code below
+    def type_check(self, ctx):
+        if not self.lhs.is_lvalue():
+            error(ctx.phase, self.position,
+                  f"assignment operator expects l-value on left-hand side")
+            return False
 
 
 @dataclass

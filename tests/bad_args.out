@@ -1,0 +1,25 @@
+Finding declarations...
+Resolving types...
+Resolving function calls...
+Checking field and variable names...
+Checking basic control flow...
+Type checking...
+tests/bad_args.uc:2:3: error (6): type int at 1 not compatible with string[] parameter
+  main(3);
+  ^~~~~~^
+tests/bad_args.uc:3:3: error (6): function main expected 1 arguments, got 2
+  main(args, args);
+  ^~~~~~~~~~~~~~~^
+tests/bad_args.uc:4:3: error (6): foo expected boolean at 1, got int
+  new foo(3);
+  ^~~~~~~~~^
+tests/bad_args.uc:5:3: error (6): foo expected boolean at 1, got null
+  new foo(null);
+  ^~~~~~~~~~~~^
+tests/bad_args.uc:6:3: error (6): foo expected 1 arguments, got 2
+  new foo(true, false);
+  ^~~~~~~~~~~~~~~~~~~^
+tests/bad_args.uc:7:3: error (6): array of foo cannot be initialized with int
+  new foo[] { 3 };
+  ^~~~~~~~~~~~~~^
+6 errors generated in phase 6.

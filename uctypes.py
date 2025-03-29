@@ -223,7 +223,7 @@ class UserType(Type):
             return False
         for index, arg in enumerate(args):
             if self.fields[index].type is not arg.type:
-                mssg = f"{self.type} expected {self.fields[index].vartype} at {index + 1}, got {arg.type}"
+                mssg = f"{self.type} expected {self.fields[index].vartype.name.raw} at {index + 1}, got {arg.type}"
                 error(phase, position, mssg)
                 return False
 
