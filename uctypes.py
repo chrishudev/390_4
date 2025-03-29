@@ -227,6 +227,8 @@ class UserType(Type):
             return False
         for index, arg in enumerate(args):
             if self.fields[index].get_type() is not arg.type:
+                if arg.type.is_convertible_to(self.fields[index].get_type()):
+                    continue
                 mssg = f"{self.type} expected {self.fields[index].vartype.name.raw} at {index + 1}, got {arg.type}"
                 error(phase, position, mssg)
                 return False
