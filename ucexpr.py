@@ -66,7 +66,7 @@ class IntegerNode(LiteralNode):
     """An AST node representing an integer (int or long) literal."""
 
     # add your code below
-    def type_check(self, ctx):
+    def resolve_types(self, ctx):
         """Type check for IntergerNode."""
         self.type = ctx.global_env.lookup_type(
             ctx.phase, self.position, 'int')
@@ -77,7 +77,7 @@ class DoubleNode(LiteralNode):
     """An AST node representing a double literal."""
 
     # add your code below
-    def type_check(self, ctx):
+    def resolve_types(self, ctx):
         """Type check for DoubleNode."""
         self.type = ctx.global_env.lookup_type(
             ctx.phase, self.position, 'double')
@@ -88,7 +88,7 @@ class StringNode(LiteralNode):
     """An AST node representing a string literal."""
 
     # add your code below
-    def type_check(self, ctx):
+    def resolve_types(self, ctx):
         """Type check for StringNode."""
         self.type = ctx.global_env.lookup_type(
             ctx.phase, self.position, 'string')
@@ -99,7 +99,7 @@ class BooleanNode(LiteralNode):
     """An AST node representing a boolean literal."""
 
     # add your code below
-    def type_check(self, ctx):
+    def resolve_types(self, ctx):
         """Type check for BooleanNode."""
         self.type = ctx.global_env.lookup_type(
             ctx.phase, self.position, 'boolean')
@@ -112,7 +112,7 @@ class NullNode(LiteralNode):
     text: str = 'nullptr'
 
     # add your code below
-    def type_check(self, ctx):
+    def resolve_types(self, ctx):
         """Type check for NullNode."""
         self.type = ctx.global_env.lookup_type(
             ctx.phase, self.position, 'null')
@@ -160,6 +160,8 @@ class CallNode(ExpressionNode):
     # add your code below
     def resolve_types(self, ctx):
         """Resolve types for args in CallNode."""
+        for arg in self.args:
+            arg.resolve_types(ctx)
 
     def resolve_calls(self, ctx):
         """Resolve calls in CallNode and set func."""
@@ -185,7 +187,6 @@ class CallNode(ExpressionNode):
             ucbase.error(ctx.phase, self.position, mssg)
             return False
         for index, arg in enumerate(self.args):
-            arg.type_check(ctx)
             if self.func.param_types[index] is not arg.type:
                 mssg = self.type_error(
                     index + 1, self.func.param_types[index], arg.type)
@@ -209,10 +210,10 @@ class NewNode(ExpressionNode):
         """Resolve type of NewNode."""
         self.typename.resolve_types(ctx)
         self.type = self.typename.type
+        for arg in self.args:
+            arg.resolve_types(ctx)
 
     def type_check(self, ctx):
-        for index, _ in enumerate(self.args):
-            self.args[index].resolve_types(ctx)
         self.type.check_args(ctx.phase, self.position, self.args)
 
 

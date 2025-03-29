@@ -216,6 +216,10 @@ class UserType(Type):
         an argument is incompatible.
         """
         # replace the code below with your solution
+        mssg = "; ".join(f"{a}" for a in args)
+        error(phase, position, mssg)
+        mssg = "; ".join(f"{f}" for f in self.fields)
+        error(phase, position, mssg)
         self.type = self.decl.type
         if len(self.fields) != len(args):
             mssg = f"{self.type} expected {len(self.fields)} arguments, got {len(args)}"
