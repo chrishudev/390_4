@@ -515,9 +515,11 @@ class FieldDeclNode(ASTNode):
 
     # add your code below if necessary
     def init_type(self, nulltype):
+        """Initialize vartype as nulltype."""
         self.vartype.type = nulltype
 
     def get_type(self):
+        """Get type of FieldDeclNode."""
         return self.vartype.type
 
     def resolve_types(self, ctx):
@@ -538,6 +540,7 @@ class ParameterNode(ASTNode):
 
     # add your code below if necessary
     def get_type(self):
+        """Get type of ParameterNode."""
         return self.vartype.type
 
     def resolve_types(self, ctx):

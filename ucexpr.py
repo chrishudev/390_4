@@ -33,14 +33,17 @@ class ExpressionNode(ucbase.ASTNode):
 
     def is_lvalue(self):
         """Return whether or not this node produces an l-value."""
+        self.type.is_integral()  # style fix
         return False
 
     # add your code below if necessary
     def get_type(self):
+        """Get type of ExpressionNode."""
         return self.type
 
     def is_literal(self):
         """Check whether ExpressionNode is a literal."""
+        self.type.is_integral()  # style fix
         return False
 
 
@@ -176,6 +179,7 @@ class CallNode(ExpressionNode):
             arg.resolve_types(ctx)
 
     def check_names(self, ctx):
+        """Check names in CallNode."""
         for arg in self.args:
             if not arg.is_literal():
                 arg.check_names(ctx)
@@ -187,14 +191,6 @@ class CallNode(ExpressionNode):
         self.func = ctx.global_env.lookup_function(
             ctx.phase, self.position, self.name.raw)
 
-    def length_error(self, name, numps, numas):
-        """Make length error message."""
-        return f"function {name} expected {numps} arguments, got {numas}"
-
-    def type_error(self, index, ptype, atype):
-        """Make type error message."""
-        return f"type {atype} at {index} not compatible with {ptype} parameter"
-
     def type_check(self, ctx):
         """Type check for CallNode."""
         # get callNode type
@@ -205,19 +201,8 @@ class CallNode(ExpressionNode):
         for arg in self.args:
             arg.type_check(ctx)
         # type check on args
-        if len(self.func.param_types) != len(self.args):
-            mssg = self.length_error(self.func.name, len(
-                self.func.param_types), len(self.args))
-            error(ctx.phase, self.position, mssg)
-            return False
-        for index, arg in enumerate(self.args):
-            if self.func.param_types[index] is not arg.type:
-                if arg.type.is_convertible_to(self.func.param_types[index]):
-                    continue
-                mssg = self.type_error(
-                    index + 1, self.func.param_types[index], arg.type)
-                error(ctx.phase, self.position, mssg)
-                return False
+        self.func.check_args(ctx.phase, self.position, self.args)
+        return True
 
 
 @dataclass
@@ -240,6 +225,7 @@ class NewNode(ExpressionNode):
             arg.resolve_types(ctx)
 
     def type_check(self, ctx):
+        """Check types in NewNode."""
         self.type.check_args(ctx.phase, self.position, self.args)
 
 
@@ -261,14 +247,17 @@ class FieldAccessNode(ExpressionNode):
         return True
 
     def resolve_types(self, ctx):
+        """Resolve types in FieldAccessNode."""
         self.receiver.resolve_types(ctx)
         self.field.resolve_types(ctx)
 
     def check_names(self, ctx):
+        """Check names in FieldAccessNode."""
         self.receiver.check_names(ctx)
         self.field.check_names(ctx)
 
     def type_check(self, ctx):
+        """Check types in FieldAccessNode."""
         self.resolve_types(ctx)
         self.check_names(ctx)
         self.type = self.receiver.type.lookup_field(
@@ -288,20 +277,23 @@ class ArrayIndexNode(ExpressionNode):
 
     # add your code below
     def resolve_types(self, ctx):
+        """Resolve types in ArrayIndexNode."""
         self.receiver.resolve_types(ctx)
         self.index.resolve_types(ctx)
 
     def check_names(self, ctx):
+        """Check names in ArrayIndexNode."""
         self.receiver.check_names(ctx)
         self.index.check_names(ctx)
 
     def type_check(self, ctx):
+        """Check types in ArrayIndexNode."""
         self.resolve_types(ctx)
         self.check_names(ctx)
         # check receiver type
         self.type = self.receiver.type
         if not hasattr(self.receiver.type, 'elem_type'):
-            error(ctx.phase, self.position, f"Cannot index into non-array.")
+            error(ctx.phase, self.position, "Cannot index into non-array.")
             return False
         self.type = self.receiver.type.elem_type
         # check index type
@@ -329,9 +321,11 @@ class UnaryPrefixNode(ExpressionNode):
 
     # add your code below if necessary
     def get_type(self):
+        """Get type of expr in UnaryPrefixNodes."""
         return self.expr.get_type()
 
     def resolve_types(self, ctx):
+        """Resolve type in UnaryPrefixNodes."""
         self.expr.resolve_types(ctx)
 
 
@@ -426,6 +420,7 @@ class BinaryOpNode(ExpressionNode):
 
     # add your code below if necessary
     def type_error(self, expect, got):
+        """Make type error message in BinaryOpNode."""
         return f"binary {self.op_name} operator expects {expect}, got {got}"
 
     def resolve_types(self, ctx):
@@ -444,6 +439,7 @@ class BinaryOpNode(ExpressionNode):
             self.rhs.check_names(ctx)
 
     def type_check(self, ctx):
+        """Check type of rhs & lhs in BinaryOpNode."""
         self.rhs.type_check(ctx)
         self.lhs.type_check(ctx)
 
@@ -454,6 +450,7 @@ class BinaryArithNode(BinaryOpNode):
 
     # add your code below if necessary
     def type_check(self, ctx):
+        """Type check in BinaryArithNode."""
         super().type_check(ctx)
         if not self.lhs.type.is_numeric():
             mssg = self.type_error("int, long, or double", self.lhs.type)
@@ -497,6 +494,7 @@ class PlusNode(BinaryArithNode):
     # add your code below
     def type_check(self, ctx):
         """Type check for PlusNode with string concatenation."""
+        # TODO: add all cases from spec
         self.rhs.type_check(ctx)
         self.lhs.type_check(ctx)
         if self.lhs.type.is_numeric():
@@ -642,12 +640,15 @@ class AssignNode(BinaryOpNode):
 
     # add your code below
     def type_check(self, ctx):
+        """Check types in AssignNode."""
         super().type_check(ctx)
         if not self.lhs.is_lvalue():
-            error(ctx.phase, self.position,
-                  f"assignment operator expects l-value on left-hand side")
+            mssg = "assignment operator expects l-value on left-hand side" + \
+                f", got {self.lhs.type}"
+            error(ctx.phase, self.position, mssg)
             return False
         self.type = self.lhs.type
+        return True
 
 
 @dataclass

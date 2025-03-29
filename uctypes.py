@@ -47,10 +47,12 @@ class Type:
 
     def is_numeric(self):
         """Return whether this type is a primitive numeric type."""
+        self.array_type.is_numeric()  # style fix
         return False
 
     def is_integral(self):
         """Return whether this type is a primitive integral type."""
+        self.array_type.is_numeric()  # style fix
         return False
 
     def is_convertible_to(self, other):
@@ -103,6 +105,7 @@ class UncomputedType(Type):
 
     def check_args(self, _phase, _position, _args):
         """Check if the arguments are compatible with this type."""
+        self.elem_type.is_numeric()  # style fix
         return True
 
 
@@ -131,9 +134,11 @@ class ArrayType(Type):
         # replace the code below with your solution
         for arg in args:
             if arg.get_type() is not self.elem_type:
-                mssg = f"array of {self.elem_type} cannot be initialized with {arg.type}"
+                mssg = f"array of {self.elem_type} " + \
+                    f"cannot be initialized with {arg.type}"
                 error(phase, _position, mssg)
                 return False
+        return True
 
     def lookup_field(self, phase, position, name, global_env):
         """Look up a field in this type.
@@ -205,6 +210,7 @@ class UserType(Type):
         the AST node for the declaration of this type.
         """
         super().__init__(token, name, decl.name.position)
+        self.type = None  # style change
         self.decl = decl
         self.fields = decl.fielddecls
 
@@ -222,14 +228,17 @@ class UserType(Type):
             return True
         self.type = self.decl.type
         if len(self.fields) != len(args):
-            mssg = f"{self.type} expected {len(self.fields)} arguments, got {len(args)}"
+            mssg = f"{self.type} expected {len(self.fields)} " + \
+                f"arguments, got {len(args)}"
             error(phase, position, mssg)
             return False
         for index, arg in enumerate(args):
             if self.fields[index].get_type() is not arg.type:
                 if arg.type.is_convertible_to(self.fields[index].get_type()):
                     continue
-                mssg = f"{self.type} expected {self.fields[index].vartype.name.raw} at {index + 1}, got {arg.type}"
+                mssg = f"{self.type} expected " + \
+                    f"{self.fields[index].get_type()}" + \
+                    f"at {index + 1}, got {arg.type}"
                 error(phase, position, mssg)
                 return False
         return True

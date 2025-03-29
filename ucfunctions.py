@@ -63,8 +63,20 @@ class Function:
         error if the arguments are incompatible with this function.
         """
         # replace the code below with your solution
-        error(phase, position, f'check for {args} unimplemented')
-        return False
+        if len(self.param_types) != len(args):
+            mssg = f"function {self.name} expected " + \
+                f"{len(self.param_types)} arguments, got {len(args)}"
+            error(phase, position, mssg)
+            return False
+        for index, param in enumerate(self.param_types):
+            if param is not args[index].type:
+                if args[index].type.is_convertible_to(param):
+                    continue
+                mssg = f"type {param} at {index + 1} not compatible " + \
+                    f"with {args[index].type} parameter"
+                error(phase, position, mssg)
+                return False
+        return True
 
 
 class UncomputedFunction(Function):
