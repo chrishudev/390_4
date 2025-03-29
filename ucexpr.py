@@ -212,6 +212,8 @@ class CallNode(ExpressionNode):
             return False
         for index, arg in enumerate(self.args):
             if self.func.param_types[index] is not arg.type:
+                if arg.type.is_convertible_to(self.func.param_types[index]):
+                    continue
                 mssg = self.type_error(
                     index + 1, self.func.param_types[index], arg.type)
                 error(ctx.phase, self.position, mssg)
