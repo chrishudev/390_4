@@ -1,0 +1,19 @@
+Finding declarations...
+Resolving types...
+Resolving function calls...
+Checking field and variable names...
+Checking basic control flow...
+Type checking...
+tests/bad_array_index.uc:3:3: error (6): Cannot index non-integer double into array.
+  args[f];
+  ^~~~~~^
+tests/bad_array_index.uc:4:7: error (6): Cannot index into non-array.
+  3 + f[3];
+      ^~~^
+tests/bad_array_index.uc:4:7: error (6): Cannot index into non-array.
+  3 + f[3];
+      ^~~^
+tests/bad_array_index.uc:4:3: error (6): binary + operator expects int, got double
+  3 + f[3];
+  ^~~~~~~^
+4 errors generated in phase 6.

@@ -1,0 +1,36 @@
+ProgramNode {
+  FunctionDeclNode {
+    TypeNameNode: void {
+      NameNode {
+        void
+      }
+    }
+    NameNode {
+      main
+    }
+    ParameterNode {
+      ArrayTypeNameNode: string[] {
+        TypeNameNode: string {
+          NameNode {
+            string
+          }
+        }
+      }
+      NameNode {
+        args
+      }
+    }
+    BlockNode {
+      ExpressionStatementNode {
+        CallNode: void {
+          NameNode {
+            println
+          }
+          StringNode: string {
+            "Hello world!"
+          }
+        }
+      }
+    }
+  }
+}

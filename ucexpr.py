@@ -434,6 +434,16 @@ class BinaryArithNode(BinaryOpNode):
     """A base AST node representing a binary arithmetic operation."""
 
     # add your code below if necessary
+    def type_check(self, ctx):
+        super().type_check(ctx)
+        if not self.lhs.type.is_numeric():
+            mssg = self.type_error("int, long, or double", self.lhs.type)
+            error(ctx.phase, self.lhs.position, mssg)
+        if not self.rhs.type.is_numeric():
+            mssg = self.type_error("int, long, or double", self.rhs.type)
+            error(ctx.phase, self.rhs.position, mssg)
+        self.type = self.lhs.type
+        return True
 
 
 @dataclass
@@ -468,18 +478,19 @@ class PlusNode(BinaryArithNode):
     # add your code below
     def type_check(self, ctx):
         """Type check for PlusNode with string concatenation."""
-        super().type_check(ctx)
+        self.rhs.type_check(ctx)
+        self.lhs.type_check(ctx)
         if self.lhs.type.is_numeric():
-            if not self.lhs.type.is_numeric():
-                mssg = self.type_error("int, long, or double", self.lhs.type)
-                error(ctx.phase, self.lhs.position, mssg)
-            if not self.rhs.type.is_numeric():
-                mssg = self.type_error("int, long, or double", self.rhs.type)
-                error(ctx.phase, self.rhs.position, mssg)
+            super().type_check(ctx)
+
+        if str(self.lhs.type) == 'string':
             self.type = self.lhs.type
             return True
+
         if self.lhs.type is not self.rhs.type:
             mssg = self.type_error(self.lhs.type, self.rhs.type)
+            error(ctx.phase, self.position, mssg)
+            return False
         self.type = self.lhs.type
         return True
 
