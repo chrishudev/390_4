@@ -68,8 +68,17 @@ class IntegerNode(LiteralNode):
     # add your code below
     def resolve_types(self, ctx):
         """Type check for IntergerNode."""
+        if self.text[-1] == "L":
+            self.type = ctx.global_env.lookup_type(
+                ctx.phase, self.position, 'long')
+            return True
+        if '.' in self.text:
+            self.type = ctx.global_env.lookup_type(
+                ctx.phase, self.position, 'double')
+            return True
         self.type = ctx.global_env.lookup_type(
             ctx.phase, self.position, 'int')
+        return True
 
 
 @dataclass
@@ -491,6 +500,7 @@ class PlusNode(BinaryArithNode):
             mssg = self.type_error(self.lhs.type, self.rhs.type)
             error(ctx.phase, self.position, mssg)
             return False
+
         self.type = self.lhs.type
         return True
 
