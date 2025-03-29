@@ -129,8 +129,11 @@ class ArrayType(Type):
         argument is incompatible.
         """
         # replace the code below with your solution
-        error(phase, _position, f'check for {args} unimplemented')
-        return False
+        for arg in args:
+            if arg.type is not self.elem_type:
+                mssg = f"array of {self.elem_type} cannot be initialized with {arg.type}"
+                error(phase, _position, mssg)
+                return False
 
     def lookup_field(self, phase, position, name, global_env):
         """Look up a field in this type.
@@ -213,8 +216,15 @@ class UserType(Type):
         an argument is incompatible.
         """
         # replace the code below with your solution
-        error(phase, position, f'check for {args} unimplemented')
-        return False
+        self.type = self.decl.type
+        if len(self.fields) != len(args):
+            mssg = f"{self.type} expected {len(self.fields)} arguments, got {len(args)}"
+            error(phase, position, mssg)
+            return False
+        for index, arg in enumerate(args):
+            if self.fields[index].vartype is not arg.type:
+                mssg = f"{self.type} expected {self.fields[index].vartype} at {index + 1}, got {arg.type}"
+                return False
 
     def lookup_field(self, phase, position, name, _global_env):
         """Look up a field in this type.

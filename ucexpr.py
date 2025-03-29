@@ -158,6 +158,9 @@ class CallNode(ExpressionNode):
     )
 
     # add your code below
+    def resolve_types(self, ctx):
+        """Resolve types for args in CallNode."""
+
     def resolve_calls(self, ctx):
         """Resolve calls in CallNode and set func."""
         self.func = ctx.global_env.lookup_function(
@@ -180,14 +183,14 @@ class CallNode(ExpressionNode):
             mssg = self.length_error(self.func.name, len(
                 self.func.param_types), len(self.args))
             ucbase.error(ctx.phase, self.position, mssg)
-            return
+            return False
         for index, arg in enumerate(self.args):
             arg.type_check(ctx)
             if self.func.param_types[index] is not arg.type:
                 mssg = self.type_error(
                     index + 1, self.func.param_types[index], arg.type)
                 ucbase.error(ctx.phase, self.position, mssg)
-                return
+                return False
 
 
 @dataclass

@@ -574,9 +574,6 @@ class StructDeclNode(DeclNode):
         # reset parent environment
         ctx['local_env'] = parent
 
-    def type_check(self, ctx):
-        return super().type_check(ctx)
-
 
 @dataclass
 class FunctionDeclNode(DeclNode):
