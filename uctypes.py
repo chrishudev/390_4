@@ -145,7 +145,9 @@ class ArrayType(Type):
         field if it is found, int otherwise.
         """
         # replace the code below with your solution
-        error(phase, position, f'lookup for {name} unimplemented')
+        if name == "length":
+            return global_env.lookup_type(phase, position, 'int')
+        error(phase, position, f"unknown field {name} of ArrayType")
         return global_env.lookup_type(phase, position, 'int')
 
 
