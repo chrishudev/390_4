@@ -163,6 +163,11 @@ class CallNode(ExpressionNode):
         for arg in self.args:
             arg.resolve_types(ctx)
 
+    def check_names(self, ctx):
+        for arg in self.args:
+            if not arg.is_literal():
+                arg.check_names(ctx)
+
     def resolve_calls(self, ctx):
         """Resolve calls in CallNode and set func."""
         self.func = ctx.global_env.lookup_function(
@@ -180,6 +185,9 @@ class CallNode(ExpressionNode):
         """Type check for CallNode."""
         # get callNode type
         self.type = self.func.rettype
+        # get args type
+        self.resolve_types(ctx)
+        self.check_names(ctx)
         # type check on args
         if len(self.func.param_types) != len(self.args):
             mssg = self.length_error(self.func.name, len(
@@ -377,12 +385,16 @@ class BinaryOpNode(ExpressionNode):
     op_name: str
 
     # add your code below if necessary
+    def type_error(self, expect, got):
+        return f"binary {self.op_name} operator expects {expect}, got {got}"
+
     def resolve_types(self, ctx):
         """Type check for IntergerNode."""
         self.type = ctx.global_env.lookup_type(
             ctx.phase, self.position, 'boolean')
         self.lhs.resolve_types(ctx)
         self.rhs.resolve_types(ctx)
+        return True
 
     def check_names(self, ctx):
         """Check names in BinaryOpNode and children."""
@@ -391,12 +403,24 @@ class BinaryOpNode(ExpressionNode):
         if not self.rhs.is_literal():
             self.lhs.check_names(ctx)
 
+    def type_check(self, ctx):
+        self.rhs.type_check(ctx)
+        self.lhs.type_check(ctx)
+
 
 @dataclass
 class BinaryArithNode(BinaryOpNode):
     """A base AST node representing a binary arithmetic operation."""
 
     # add your code below if necessary
+    def type_check(self, ctx):
+        super().type_check(ctx)
+        if not self.lhs.type.is_numeric():
+            mssg = self.type_error("int, long, or double", self.lhs.type)
+            error(ctx.phase, self.lhs.position, mssg)
+        if not self.rhs.type.is_numeric():
+            mssg = self.type_error("int, long, or double", self.rhs.type)
+            error(ctx.phase, self.rhs.position, mssg)
 
 
 @dataclass
