@@ -556,6 +556,10 @@ class StructDeclNode(DeclNode):
         """Find declarations for struct."""
         self.type = ctx.global_env.add_type(
             ctx.phase, self.position, self.name.raw, self)
+        # initialize to null
+        for decl in self.fielddecls:
+            decl.type = ctx.global_env.lookup_type(
+                ctx.phase, self.position, 'null')
 
     def resolve_types(self, ctx):
         """Resolve types for struct."""

@@ -170,6 +170,8 @@ class CallNode(ExpressionNode):
 
     def resolve_calls(self, ctx):
         """Resolve calls in CallNode and set func."""
+        for arg in self.args:
+            arg.resolve_calls(ctx)
         self.func = ctx.global_env.lookup_function(
             ctx.phase, self.position, self.name.raw)
 
@@ -240,6 +242,18 @@ class FieldAccessNode(ExpressionNode):
     field: ucbase.NameNode
 
     # add your code below
+    def resolve_types(self, ctx):
+        self.receiver.resolve_types(ctx)
+        self.field.resolve_types(ctx)
+
+    def check_names(self, ctx):
+        self.receiver.check_names(ctx)
+        self.field.check_names(ctx)
+
+    def type_check(self, ctx):
+        self.resolve_types(ctx)
+        self.check_names(ctx)
+        self.type = self.receiver.type
 
 
 @dataclass
