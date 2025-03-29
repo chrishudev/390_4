@@ -418,7 +418,7 @@ class BinaryOpNode(ExpressionNode):
         if not self.lhs.is_literal():
             self.lhs.check_names(ctx)
         if not self.rhs.is_literal():
-            self.lhs.check_names(ctx)
+            self.rhs.check_names(ctx)
 
     def type_check(self, ctx):
         self.rhs.type_check(ctx)
