@@ -196,8 +196,8 @@ class CallNode(ExpressionNode):
         # get callNode type
         self.type = self.func.rettype
         # get args type
-        self.resolve_types(ctx)
-        self.check_names(ctx)
+        # self.resolve_types(ctx)
+        # self.check_names(ctx)
         for arg in self.args:
             arg.type_check(ctx)
         # type check on args
@@ -258,8 +258,8 @@ class FieldAccessNode(ExpressionNode):
 
     def type_check(self, ctx):
         """Check types in FieldAccessNode."""
-        self.resolve_types(ctx)
-        self.check_names(ctx)
+        # self.resolve_types(ctx)
+        # self.check_names(ctx)
         self.type = self.receiver.type.lookup_field(
             ctx.phase, self.position, self.field.raw, ctx.global_env)
 
@@ -288,8 +288,8 @@ class ArrayIndexNode(ExpressionNode):
 
     def type_check(self, ctx):
         """Check types in ArrayIndexNode."""
-        self.resolve_types(ctx)
-        self.check_names(ctx)
+        # self.resolve_types(ctx)
+        # self.check_names(ctx)
         # check receiver type
         self.type = self.receiver.type
         if not hasattr(self.receiver.type, 'elem_type'):
@@ -327,6 +327,11 @@ class UnaryPrefixNode(ExpressionNode):
     def resolve_types(self, ctx):
         """Resolve type in UnaryPrefixNodes."""
         self.expr.resolve_types(ctx)
+        self.type = self.expr.type
+
+    def check_names(self, ctx):
+        self.expr.check_names(ctx)
+        self.type = self.expr.type
 
 
 @dataclass

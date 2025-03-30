@@ -39,7 +39,7 @@ class BlockNode(StatementNode):
         for index, _ in enumerate(self.statements):
             self.statements[index].resolve_types(ctx)
 
-    def check_names(self, ctx):
+    def check_names(self, ctx):  # never runs!!!
         """Check names in BlockNode."""
         # set local environment
         parent = ctx['local_env']
@@ -262,3 +262,6 @@ class ExpressionStatementNode(StatementNode):
     def resolve_types(self, ctx):
         """Resolve type of expr in ExpressionStatementNode."""
         self.expr.resolve_types(ctx)
+
+    def type_check(self, ctx):
+        self.expr.type_check(ctx)
