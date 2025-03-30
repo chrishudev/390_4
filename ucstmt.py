@@ -260,6 +260,9 @@ class ExpressionStatementNode(StatementNode):
     expr: ExpressionNode
 
     # add your code below if necessary
+    def get_type(self):
+        return self.expr.type
+
     def resolve_types(self, ctx):
         """Resolve type of expr in ExpressionStatementNode."""
         self.expr.resolve_types(ctx)

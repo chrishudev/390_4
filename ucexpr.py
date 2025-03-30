@@ -254,12 +254,11 @@ class FieldAccessNode(ExpressionNode):
     def check_names(self, ctx):
         """Check names in FieldAccessNode."""
         self.receiver.check_names(ctx)
-        self.field.check_names(ctx)
 
     def type_check(self, ctx):
         """Check types in FieldAccessNode."""
-        # self.resolve_types(ctx)
-        # self.check_names(ctx)
+        self.receiver.type_check(ctx)
+        self.field.type_check(ctx)
         self.type = self.receiver.type.lookup_field(
             ctx.phase, self.position, self.field.raw, ctx.global_env)
 
@@ -284,14 +283,16 @@ class ArrayIndexNode(ExpressionNode):
     def check_names(self, ctx):
         """Check names in ArrayIndexNode."""
         self.receiver.check_names(ctx)
-        self.index.check_names(ctx)
+        if not self.index.is_literal():
+            self.index.check_names(ctx)
 
     def type_check(self, ctx):
         """Check types in ArrayIndexNode."""
-        # self.resolve_types(ctx)
-        # self.check_names(ctx)
         # check receiver type
         self.type = self.receiver.type
+
+        # error(ctx.phase, self.position,
+        #      f"ArrayIndexNode: {self.receiver}({self.receiver.type})[{self.index}({self.index.type})]")
         if not hasattr(self.receiver.type, 'elem_type'):
             error(ctx.phase, self.position, "Cannot index into non-array.")
             return False
