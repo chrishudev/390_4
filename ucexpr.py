@@ -254,13 +254,13 @@ class FieldAccessNode(ExpressionNode):
     def check_names(self, ctx):
         """Check names in FieldAccessNode."""
         self.receiver.check_names(ctx)
+        self.type = self.receiver.type.lookup_field(
+            ctx.phase, self.position, self.field.raw, ctx.global_env)
 
     def type_check(self, ctx):
         """Check types in FieldAccessNode."""
         self.receiver.type_check(ctx)
         self.field.type_check(ctx)
-        self.type = self.receiver.type.lookup_field(
-            ctx.phase, self.position, self.field.raw, ctx.global_env)
 
 
 @dataclass
@@ -503,18 +503,26 @@ class PlusNode(BinaryArithNode):
         # TODO: add all cases from spec
         self.rhs.type_check(ctx)
         self.lhs.type_check(ctx)
-        if self.lhs.type.is_numeric():
-            super().type_check(ctx)
 
+        # implicit conversion from string
         if str(self.lhs.type) == 'string':
             self.type = self.lhs.type
             return True
+        if str(self.rhs.type) == 'string':
+            self.type = self.rhs.type
+            return True
 
+        # numeric arguments
+        if self.lhs.type.is_numeric():
+            super().type_check(ctx)
+
+        # other arguments
         if self.lhs.type is not self.rhs.type:
             mssg = self.type_error(self.lhs.type, self.rhs.type)
             error(ctx.phase, self.position, mssg)
             return False
 
+        # default case
         self.type = self.lhs.type
         return True
 
