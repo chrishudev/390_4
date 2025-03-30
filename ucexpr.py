@@ -288,15 +288,16 @@ class ArrayIndexNode(ExpressionNode):
         if not self.index.is_literal():
             self.index.check_names(ctx)
         # self
-        if not hasattr(self.receiver.type, 'elem_type'):
-            error(ctx.phase, self.position, "Cannot index into non-array.")
-            return False
-        self.type = self.receiver.type.elem_type
+        if hasattr(self.receiver.type, 'elem_type'):
+            self.type = self.receiver.type.elem_type
         return True
 
     def type_check(self, ctx):
         """Check types in ArrayIndexNode."""
-        # check index type
+        # check receiver & index types
+        if not hasattr(self.receiver.type, 'elem_type'):
+            error(ctx.phase, self.position, "Cannot index into non-array.")
+            return False
         if not self.index.type.is_integral():
             error(ctx.phase, self.position,
                   f"Cannot index non-integer {self.index.type} into array.")
