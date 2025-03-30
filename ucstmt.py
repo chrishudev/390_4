@@ -175,6 +175,7 @@ class ForNode(StatementNode):
         self.init.check_names(ctx)
         self.test.check_names(ctx)
         self.update.check_names(ctx)
+        self.body.check_names(ctx)
         # reset parent environment
         ctx['local_env'] = parent
 
