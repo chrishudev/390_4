@@ -142,9 +142,10 @@ class WhileNode(StatementNode):
 
     def basic_control(self, ctx):
         """Check basic control in WhileNode."""
+        prev = ctx['in_loop']
         ctx['in_loop'] = True
         self.body.basic_control(ctx)
-        ctx['in_loop'] = False
+        ctx['in_loop'] = prev
 
 
 @dataclass
@@ -181,9 +182,10 @@ class ForNode(StatementNode):
 
     def basic_control(self, ctx):
         """Check basic control in ForNode."""
+        prev = ctx['in_loop']
         ctx['in_loop'] = True
         self.body.basic_control(ctx)
-        ctx['in_loop'] = False
+        ctx['in_loop'] = prev
 
 
 @dataclass
@@ -197,7 +199,10 @@ class BreakNode(StatementNode):
             if not ctx['in_loop']:
                 error(ctx.phase, self.position,
                       "break only allowed within a loop")
+                return False
+            return True
         error(ctx.phase, self.position, "break only allowed within a loop")
+        return False
 
 
 @dataclass
@@ -259,6 +264,7 @@ class ExpressionStatementNode(StatementNode):
 
     # add your code below if necessary
     def get_type(self):
+        """Get type of ExpressionStatementNode."""
         return self.expr.type
 
     def resolve_types(self, ctx):
@@ -266,4 +272,5 @@ class ExpressionStatementNode(StatementNode):
         self.expr.resolve_types(ctx)
 
     def type_check(self, ctx):
+        """Check type of ExpressionStatementNode."""
         self.expr.type_check(ctx)

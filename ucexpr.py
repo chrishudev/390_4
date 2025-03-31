@@ -331,6 +331,7 @@ class UnaryPrefixNode(ExpressionNode):
         self.type = self.expr.type
 
     def check_names(self, ctx):
+        """Check names in UnaryPrefixNode."""
         self.expr.check_names(ctx)
         self.type = self.expr.type
 
@@ -469,6 +470,7 @@ class BinaryLogicNode(BinaryOpNode):
 
     # add your code below if necessary
     def type_check(self, ctx):
+        """Check types in BinaryLogicNode."""
         super().type_check(ctx)
         if str(self.lhs.type) != 'boolean':
             mssg = self.type_error('boolean', self.lhs.type)
@@ -487,6 +489,7 @@ class BinaryCompNode(BinaryOpNode):
 
     # add your code below if necessary
     def type_check(self, ctx):
+        """Check types in BinaryCompNode."""
         super().type_check(ctx)
         # make sure types are the same
         if str(self.lhs.type) == 'string':
@@ -746,6 +749,7 @@ class PushNode(BinaryOpNode):
 
     # add your code below
     def type_check(self, ctx):
+        """Check type of PushNode."""
         super().type_check(ctx)
         self.type = self.lhs.type
 
@@ -758,5 +762,6 @@ class PopNode(BinaryOpNode):
 
     # add your code below
     def type_check(self, ctx):
+        """Check type of PopNode."""
         super().type_check(ctx)
         self.type = self.lhs.type.elem_type
