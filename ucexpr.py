@@ -430,7 +430,7 @@ class BinaryOpNode(ExpressionNode):
         return f"binary {self.op_name} operator expects {expect}, got {got}"
 
     def resolve_types(self, ctx):
-        """Type check for IntergerNode."""
+        """Resolve types in BinaryOpNode."""
         self.type = ctx.global_env.lookup_type(
             ctx.phase, self.position, 'boolean')
         self.lhs.resolve_types(ctx)
@@ -458,12 +458,7 @@ class BinaryArithNode(BinaryOpNode):
     def type_check(self, ctx):
         """Type check in BinaryArithNode."""
         super().type_check(ctx)
-        if not self.lhs.type.is_numeric():
-            mssg = self.type_error("int, long, or double", self.lhs.type)
-            error(ctx.phase, self.lhs.position, mssg)
-        if not self.rhs.type.is_numeric():
-            mssg = self.type_error("int, long, or double", self.rhs.type)
-            error(ctx.phase, self.rhs.position, mssg)
+        # set type for now, override in overloads
         self.type = self.lhs.type
         return True
 
@@ -473,6 +468,17 @@ class BinaryLogicNode(BinaryOpNode):
     """A base AST node representing a binary logic operation."""
 
     # add your code below if necessary
+    def type_check(self, ctx):
+        super().type_check(ctx)
+        if str(self.lhs.type) != 'boolean':
+            mssg = self.type_error('boolean', self.lhs.type)
+            error(ctx.phase, self.position, mssg)
+            return False
+        if str(self.rhs.type) != 'boolean':
+            mssg = self.type_error('boolean', self.rhs.type)
+            error(ctx.phase, self.position, mssg)
+            return False
+        return True
 
 
 @dataclass
@@ -480,6 +486,20 @@ class BinaryCompNode(BinaryOpNode):
     """A base AST node representing binary comparison operation."""
 
     # add your code below if necessary
+    def type_check(self, ctx):
+        super().type_check(ctx)
+        # make sure types are the same
+        if str(self.lhs.type) == 'string':
+            if str(self.rhs.type) != 'string':
+                mssg = self.type_error('string', self.lhs.type)
+                error(ctx.phase, self.position, mssg)
+                return False
+        if self.lhs.type.is_numeric():
+            if not self.rhs.type.is_numeric():
+                mssg = self.type_error('string', self.rhs.type)
+                error(ctx.phase, self.position, mssg)
+                return False
+        return True
 
 
 @dataclass
@@ -500,11 +520,9 @@ class PlusNode(BinaryArithNode):
     # add your code below
     def type_check(self, ctx):
         """Type check for PlusNode with string concatenation."""
-        # TODO: add all cases from spec
-        self.rhs.type_check(ctx)
-        self.lhs.type_check(ctx)
+        super().type_check(ctx)
 
-        # implicit conversion from string
+        # concatenating to string
         if str(self.lhs.type) == 'string':
             self.type = self.lhs.type
             return True
@@ -512,19 +530,20 @@ class PlusNode(BinaryArithNode):
             self.type = self.rhs.type
             return True
 
-        # numeric arguments
-        if self.lhs.type.is_numeric():
-            super().type_check(ctx)
+        # adding numbers
+        if self.lhs.type.is_numeric() and self.rhs.type.is_numeric():
+            if not self.lhs.type.is_integral():
+                self.type = self.lhs.type
+                return True
+            if not self.rhs.type.is_integral():
+                self.type = self.rhs.type
+                return True
+            return True
 
-        # other arguments
-        if self.lhs.type is not self.rhs.type:
-            mssg = self.type_error(self.lhs.type, self.rhs.type)
-            error(ctx.phase, self.position, mssg)
-            return False
-
-        # default case
-        self.type = self.lhs.type
-        return True
+        # else, error
+        mssg = self.type_error(self.lhs.type, self.rhs.type)
+        error(ctx.phase, self.position, mssg)
+        return False
 
 
 @dataclass
@@ -534,6 +553,21 @@ class MinusNode(BinaryArithNode):
     op_name: str = '-'
 
     # add your code below if necessary
+    def type_check(self, ctx):
+        """Type check for MinusNode."""
+        super().type_check(ctx)
+        # override for non-integral types
+        if self.lhs.type.is_numeric() and self.rhs.type.is_numeric():
+            if not self.lhs.type.is_integral():
+                self.type = self.lhs.type
+                return True
+            if not self.rhs.type.is_integral():
+                self.type = self.rhs.type
+                return True
+            return True
+        mssg = self.type_error(self.lhs.type, self.rhs.type)
+        error(ctx.phase, self.position, mssg)
+        return False
 
 
 @dataclass
@@ -543,6 +577,21 @@ class TimesNode(BinaryArithNode):
     op_name: str = '*'
 
     # add your code below if necessary
+    def type_check(self, ctx):
+        """Type check for MinusNode."""
+        super().type_check(ctx)
+        # override for non-integral types
+        if self.lhs.type.is_numeric() and self.rhs.type.is_numeric():
+            if not self.lhs.type.is_integral():
+                self.type = self.lhs.type
+                return True
+            if not self.rhs.type.is_integral():
+                self.type = self.rhs.type
+                return True
+            return True
+        mssg = self.type_error(self.lhs.type, self.rhs.type)
+        error(ctx.phase, self.position, mssg)
+        return False
 
 
 @dataclass
@@ -552,6 +601,21 @@ class DivideNode(BinaryArithNode):
     op_name: str = '/'
 
     # add your code below if necessary
+    def type_check(self, ctx):
+        """Type check for DivideNode."""
+        super().type_check(ctx)
+        # override for non-integral types
+        if self.lhs.type.is_numeric() and self.rhs.type.is_numeric():
+            if not self.lhs.type.is_integral():
+                self.type = self.lhs.type
+                return True
+            if not self.rhs.type.is_integral():
+                self.type = self.rhs.type
+                return True
+            return True
+        mssg = self.type_error(self.lhs.type, self.rhs.type)
+        error(ctx.phase, self.position, mssg)
+        return False
 
 
 @dataclass
@@ -561,6 +625,15 @@ class ModuloNode(BinaryArithNode):
     op_name: str = '%'
 
     # add your code below if necessary
+    def type_check(self, ctx):
+        """Type check for ModuloNode."""
+        super().type_check(ctx)
+        # integral types only
+        if self.lhs.type.is_integral() and self.rhs.type.is_integral():
+            return True
+        mssg = self.type_error(self.lhs.type, self.rhs.type)
+        error(ctx.phase, self.position, mssg)
+        return False
 
 
 # Logical operations
@@ -672,6 +745,9 @@ class PushNode(BinaryOpNode):
     op_name: str = '<<'
 
     # add your code below
+    def type_check(self, ctx):
+        super().type_check(ctx)
+        self.type = self.lhs.type
 
 
 @dataclass
@@ -681,3 +757,6 @@ class PopNode(BinaryOpNode):
     op_name: str = '>>'
 
     # add your code below
+    def type_check(self, ctx):
+        super().type_check(ctx)
+        self.type = self.lhs.type.elem_type
