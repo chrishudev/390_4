@@ -74,7 +74,7 @@ class IntegerNode(LiteralNode):
     # add your code below
     def resolve_types(self, ctx):
         """Type check for IntergerNode."""
-        if self.text[-1] == "L":
+        if self.text[-1] == "L" or self.text[-1] == 'l':
             self.type = ctx.global_env.lookup_type(
                 ctx.phase, self.position, 'long')
             return True
@@ -510,6 +510,13 @@ class EqualityTestNode(BinaryOpNode):
     """A base AST node representing an equality comparison."""
 
     # add your code below if necessary
+    def type_check(self, ctx):
+        """Check types in EqualityTestNode."""
+        super().type_check(ctx)
+        if self.lhs.type.is_convertible_to(self.rhs.type):
+            return True
+        self.type_error(self.lhs.type, self.rhs.type)
+        return False
 
 
 # Arithmetic operations
